@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "scripts": {
+    "build:server": "lerna run build --scope={@clrfund/factory-hooks}",
+    "build:web": "lerna run build --scope={@clrfund/factory-components}"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "lerna": "3.10.6"
+  },
+  "keywords": [
+    "clr.fund",
+    "RxC",
+    "quadradic",
+    "funding",
+    "community",
+    "admin",
+    "tool"
+  ],
+  "author": "daodesigner",
+  "bugs": {
+    "url": "https://github.com/clrfund/clrfund-deployer/issues"
+  },
+  "homepage": "https://github.com/clrfund/clrfund-deployer#readme"
+}

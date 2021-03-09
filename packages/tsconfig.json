@@ -1,0 +1,4 @@
+{
+    "files": [],
+    "references": [{ "path": "factory-hooks" }, { "path": "factory-components" }]
+  }
