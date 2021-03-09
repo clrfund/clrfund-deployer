@@ -10,5 +10,8 @@
   "author": "daodesigner",
   "bugs": {
     "url": "https://github.com/clrfund/clrfund-deployer/issues"
+  },
+  "dependencies": {
+    "react-hook-form": "^6.15.4"
   }
 }
