@@ -1,8 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build:server": "lerna run build --scope={@clrfund/factory-hooks}",
-    "build:web": "lerna run build --scope={@clrfund/factory-components}"
+    "build:web3": "lerna run build --scope={@clrfund-deployer/ui,@clrfund-deployer/web3}"
   },
   "workspaces": {
     "packages": [
@@ -11,6 +10,9 @@
   },
   "devDependencies": {
     "lerna": "3.10.6"
+  },
+  "resolutions": {
+    "graphql": "14.0.2"
   },
   "keywords": [
     "clr.fund",
@@ -21,9 +23,5 @@
     "admin",
     "tool"
   ],
-  "author": "daodesigner",
-  "bugs": {
-    "url": "https://github.com/clrfund/clrfund-deployer/issues"
-  },
-  "homepage": "https://github.com/clrfund/clrfund-deployer#readme"
+  "author": "daodesigner"
 }

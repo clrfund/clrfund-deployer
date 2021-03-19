@@ -1,0 +1,80 @@
+{
+  "name": "@clearfund-deployer/docs",
+  "version": "1.0.0",
+  "keywords": [
+    "clr.fund",
+    "RxC",
+    "quadradic",
+    "funding",
+    "community",
+    "admin",
+    "tool"
+  ],
+  "author": "daodesigner",
+  "private": true,
+  "main": "dist/src/index.jsx",
+  "types": "dist/src/index.d.ts",
+  "dependencies": {
+    "@emotion/css": "^11.1.3",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.0.0",
+    "@hookform/error-message": "^0.0.5",
+    "@storybook/addon-contexts": "^5.3.21",
+    "@styled-system/css": "^5.0.0",
+    "@styled-system/should-forward-prop": "^5.0.0",
+    "@types/styled-system": "^5.1.10",
+    "@types/styled-system__css": "^5.0.14",
+    "@types/styled-system__should-forward-prop": "^5.1.2",
+    "@types/theme-ui": "^0.3.7",
+    "bnc-notify": "^1.5.1",
+    "bnc-onboard": "^1.20.0",
+    "ethers": "^5.0.12",
+    "react-hook-form": "^6.15.4",
+    "react-pose": "4.0.10",
+    "react-pose-text": "3.1.0",
+    "styled-system": "^5.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "framer-motion": "^3.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^3.0.0",
+    "react-scripts": "4.0.3",
+    "typescript": "^3.9.5",
+    "web-vitals": "^0.2.2"
+  },
+  "scripts": {
+    "start": "styleguidist server",
+    "build": "tsc",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/node-logger": "^6.1.21",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.1.21",
+    "@types/styled-components": "5.1.7",
+    "awesome-typescript-loader": "5.2.1",
+    "babel-loader": "^8.1.0",
+    "react-docgen-typescript": "1.21.0",
+    "react-docgen-typescript-webpack-plugin": "1.1.0",
+    "react-styleguidist": "11.1.5"
+  }
+}

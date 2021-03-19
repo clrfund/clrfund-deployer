@@ -1,4 +1,4 @@
 {
-    "files": [],
-    "references": [{ "path": "factory-hooks" }, { "path": "factory-components" }]
-  }
+  "files": [],
+  "references": [ { "path": "web3" }, { "path": "ui" }]
+}

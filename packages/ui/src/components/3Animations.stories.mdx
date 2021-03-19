@@ -1,0 +1,185 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import Code from './assets/code-brackets.svg';
+import Colors from './assets/colors.svg';
+import Comments from './assets/comments.svg';
+import Direction from './assets/direction.svg';
+import Flow from './assets/flow.svg';
+import Plugin from './assets/plugin.svg';
+import Repo from './assets/repo.svg';
+import StackAlt from './assets/stackalt.svg';
+
+<Meta title="motion-system/Animation" />
+
+# WIP Animation
+
+  How to animate using the Framer Motion Styled System APIs.
+
+<div>
+
+Animations  via the `animate` property.
+
+</div>
+
+```jsx
+import { Motion } from "@motion-system/core"
+
+export const MyComponent = () => (
+  <Motion
+    width = "100px"
+    height = "100px"
+    backgroundColor = "aquamarine"
+
+    animate={{ rotate: 360 }}
+    transition={{ duration: 2 }}
+  />
+)
+```
+
+---
+
+
+### Tldr;
+When any value in `animate` changes, the component will automatically animate to the updated target.
+
+By default, Motion will create an appropriate animation for a snappy transition based on the types of value being animated. For instance, physical properties like `x` or `scale` will be animated via a spring simulation. Whereas values like `opacity` or `color` will be animated with a tween.
+However, you can set different types of animation by passing a [`Transition` to the `transition` prop](/api/motion/types#transition).
+
+When a component mounts, it'll automatically animate to the values in `animate` if they're different from those defined in `style` or `initial`. You can set the `initial` prop to `false` to use the value in `animate` as the component's mounted state to disable mount animations.
+
+
+```jsx
+<Motion
+  animate={{ x: 100 }}
+  transition={{ ease: "easeOut", duration: 2 }}
+  initial={false}
+/>
+```
+
+### Keyframes
+
+<div>
+
+Values in `animate` can also be set as a series of keyframes. This will animate through each value in sequence.
+
+</div>
+
+```jsx
+<Motion
+  animate={{ stdDeviation: [0, 5, 0] }}
+/>
+```
+
+<div>
+
+By default, a keyframes animation will start with the first item in the array. To use the **current** value instead, `null` can be passed as a placeholder. This way, if a keyframes animation starts while the value is currently animating, the transition will be more natural.
+
+</div>
+
+```jsx
+<Motion
+  width={500}
+  animate={{ width: [null, 100] }}
+  transition={{ duration: 3, times: [0, 0.2, 1] }}
+/>
+```
+
+## Variants
+
+Target objects are useful for simple, single-component animations. But sometimes we want to create animations that propagate throughout the DOM, and orchestrate those animations in a declarative way. We can do so with variants.
+
+<div>
+
+Variants are sets of pre-defined target objects.
+
+</div>
+
+```jsx
+const variants = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+}
+```
+
+<div>
+
+They're passed into `Motion` components via the `variants` prop.
+
+</div>
+
+```jsx
+<Motion variants={variants} />
+```
+
+<div>
+
+These variants can be referred to by label, wherever you can set an animation target.
+
+</div>
+
+```jsx
+<Motion
+  initial="hidden"
+  animate="visible"
+  variants={variants}
+/>
+```
+
+### Propagation
+
+<div>
+
+If a `Motion` component has children, changes in variant will flow down through the component hierarchy. These changes in variant will flow down until a child component defines its own `animate` property.
+
+</div>
+
+```jsx
+const list = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+}
+
+const item = {
+  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -100 },
+}
+
+return (
+  <Motion
+    as="ul"
+    initial="hidden"
+    animate="visible"
+    variants={list}
+  >
+    <Motion as="li" variants={item} />
+    <Motion as="li" variants={item} />
+    <Motion as="li" variants={item} />
+  </Motion>
+)
+```
+
+### Orchestration
+
+<div>
+
+By default, all these animations will start simultaneously. But by using variants, we gain access to extra `transition` props like `when`, `delayChildren`, and `staggerChildren` that can let parents orchestrate the execution of child animations.
+
+</div>
+
+```jsx
+const list = {
+  visible: {
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.3,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      when: "afterChildren",
+    },
+  },
+}
+```
+
