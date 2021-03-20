@@ -6,36 +6,20 @@ import { initOnboard, initNotify } from "./blocknative.default";
 import { API as OnboardAPI } from "./types.onboard";
 import { API as NotifyAPI } from "./types.notify";
 
-interface Web3Context {
-  account: string | null;
-  chainId: number | null;
-  balance: string | null;
-  library: ethers.providers.Web3Provider | null;
-  onboard: OnboardAPI | null;
-  notify: NotifyAPI | null;
-  hasMounted: boolean;
-  web3Start: () => Promise<void>;
-  web3Connect: () => Promise<boolean | undefined>;
-  web3Logout: () => Promise<void>;
-}
-export const useWeb3: (networkId: number, dappId?: string, theme?: string) => Web3Context = (
-  networkId,
-  dappId,
-  theme = "light"
-) => {
-  const [account, setAccount] = useState<string | null>("0xdead");
+export const useWeb3 = (networkId: number, dappId?: string, theme: string = "light") => {
+  const [account, setAccount] = useState<string | null>(null);
   const [chainId, setChainId] = useState<number | null>(null);
   const [balance, setBalance] = useState<string | null>(null);
   const [library, setLibrary] = useState<ethers.providers.Web3Provider | null>(null);
 
   const [onboard, setOnboard] = useState<OnboardAPI | null>(null);
   const [notify, setNotify] = useState<NotifyAPI | null>(null);
-  const [wallet, setWallet] = useLocalStorage("wallet", "null");
+  const { value: wallet, setValue: setWallet } = useLocalStorage("wallet", "null");
 
   const [hasMounted, setHasMounted] = useState<boolean>(false);
 
   //NOTE: this allows us to start BNC async, then trigger side effects on hasMounted
-  const web3Start: () => Promise<void> = useCallback(async () => {
+  const web3Start = useCallback(async () => {
     console.log("starting");
     if (!hasMounted) {
       //NOTE: BNC has horrible web3 naming conventions, horrible.
@@ -47,7 +31,7 @@ export const useWeb3: (networkId: number, dappId?: string, theme?: string) => We
             network: (_network) => (_network ? setChainId(_network) : null),
             balance: (_balance) => (_balance ? setBalance(_balance) : null),
             wallet: (_wallet) => {
-              if (_wallet && _wallet.provider) {
+              if (_wallet && _wallet.provider && _wallet.name) {
                 setLibrary(new ethers.providers.Web3Provider(_wallet.provider));
                 setWallet(_wallet.name);
               } else {
@@ -68,7 +52,7 @@ export const useWeb3: (networkId: number, dappId?: string, theme?: string) => We
     }
   }, [networkId]);
   // NOTE: Expose magic, checks if ready to transact otherwise prompts user
-  const web3Connect: () => Promise<boolean | undefined> = useCallback(async () => {
+  const web3Connect = useCallback(async () => {
     if (onboard == null) return;
     if (library) {
       console.log("library detected");

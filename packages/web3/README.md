@@ -1,7 +1,5 @@
 # Dapp
 
-[WIP] - finish moving all the hoos to TS
-
 ### 🖇 factory-hooks
 
 React hooks to send transactions for the FundingFactory contract using Ethers.js
