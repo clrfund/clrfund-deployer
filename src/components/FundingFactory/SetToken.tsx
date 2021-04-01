@@ -14,7 +14,7 @@ export const SetTokenForm = (props: any) => {
   const [txLink, setTxLink] = useState<string>("");
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit, errors, register } = useForm();
-  const { validator, handleSetToken, getReceipt, error } = useSetToken("0x0dA71825182944234F45755989a8C96Ac1343E07");
+  const { validator, handleSetToken, getReceipt, error } = useSetToken("0x5fc8d32690cc91d4c39d9d3abcbd16989f875707");
 
   const onSubmit = async (data) => {
     try {

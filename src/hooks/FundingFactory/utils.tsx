@@ -181,6 +181,9 @@ const FundingFactoryABI = [
 
 interface Web3Error extends Error {
   data?: any;
+  code?: any;
+  argument?: any;
+  reason?: string;
 }
 /**
  * @description ### Returns Go / Lua like responses for awaiting promises (data, err)
@@ -218,7 +221,6 @@ export function getContract(
   library: ethers.providers.Web3Provider,
   account: string
 ) {
-  console.log("bottom level");
   try {
     return {
       data: new ethers.Contract(contractAddress, ABI, library.getUncheckedSigner(account)),

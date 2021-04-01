@@ -51,11 +51,21 @@ function useSetMaciParameters(contractAddress: string) {
           )
         );
         if (gasEstimateError != null || estimatedGas == null) {
-          throw Error("Failed during gas estimation." + gasEstimateError?.data.message);
+          switch (gasEstimateError?.message) {
+            case "Internal JSON-RPC error.":
+              throw Error(gasEstimateError.data.message);
+            default:
+              switch (gasEstimateError?.code) {
+                case "INVALID_ARGUMENT":
+                  throw Error(gasEstimateError.argument + ":" + gasEstimateError.reason);
+                default:
+                  throw Error("Transaction will fail check method args.");
+              }
+          }
         }
 
         //NOTE: tx object properties will be null except for tx.hash because we use UncheckedJsonRpcSigner
-        const { data: txObject } = await handle(
+        const { data: txObject, error: sendError } = await handle(
           FundingFactoryContract.setMaciParameters(
             _stateTreeDepth,
             _messageTreeDepth,
@@ -69,6 +79,10 @@ function useSetMaciParameters(contractAddress: string) {
             { gasLimit: estimatedGas }
           )
         );
+        if (sendError != null || txObject == null) {
+          console.log(sendError);
+          throw Error("Failed sending transaction. ");
+        }
         return txObject;
       };
       return { send: sendTransaction, error: null };
@@ -105,7 +119,7 @@ function useSetMaciParameters(contractAddress: string) {
       return { waitTwoBlocks: null, error: Error("failed to get web3 context") };
     }
     const waitTwoBlocks: TransactionReceiptOrError = async (hash: string) => {
-      const { data: receipt, error } = await handle(library.waitForTransaction(hash, 2));
+      const { data: receipt, error } = await handle(library.waitForTransaction(hash, 1));
       if (error != null) {
         return { receipt: null, error };
       }

@@ -329,7 +329,6 @@ const registerBytes32: RegisterHelper = {
     isValidJSON: (value) => {
       try {
         JSON.parse(value);
-        console.log(JSON.parse(value));
       } catch (e) {
         return "Failed to parse JSON";
       }

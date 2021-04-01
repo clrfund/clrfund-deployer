@@ -9,7 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 ReactDOM.render(
   <React.StrictMode>
     <ColorModeScript />
-    <Web3Provider networkId={100}>
+    <Web3Provider networkId={1337}>
       <App />
     </Web3Provider>
   </React.StrictMode>,

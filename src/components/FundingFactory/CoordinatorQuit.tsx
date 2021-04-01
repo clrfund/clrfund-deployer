@@ -15,7 +15,7 @@ export const CoordinatorQuitForm = (props: any) => {
   const [txReceipt, setTxReceipt] = useState<TransactionReceipt | null>(null);
   const { handleSubmit } = useForm();
   const { validator, handleCoordinatorQuit, getReceipt, error } = useCoordinatorQuit(
-    "0x0dA71825182944234F45755989a8C96Ac1343E07"
+    "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707"
   );
   const onSubmit = async (data) => {
     try {

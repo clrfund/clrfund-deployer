@@ -15,7 +15,7 @@ export const SetCoordinatorForm = (props: any) => {
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit, errors, register } = useForm();
   const { validator, handleSetCoordinator, getReceipt, error } = useSetCoordinator(
-    "0x0dA71825182944234F45755989a8C96Ac1343E07"
+    "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707"
   );
 
   const onSubmit = async (data) => {

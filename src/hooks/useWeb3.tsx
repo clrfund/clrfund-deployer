@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 
 import { useLocalStorage } from "./useLocalStorage";
@@ -21,14 +21,16 @@ export const useWeb3 = (networkId: number, dappId?: string, theme: string = "lig
   //NOTE: this allows us to start BNC async, then trigger side effects on hasMounted
   const web3Start = async () => {
     console.log("starting");
-    console.log("hasMounted" + hasMounted);
+
     if (!hasMounted) {
       //NOTE: BNC has horrible web3 naming conventions, horrible.
       //DONE: Rename all the things, expose web3 provider, save wallet prefference to local store (only the same of the wallet no user data)
       setOnboard(
         initOnboard(
           {
-            address: (_address) => (_address ? setAccount(_address) : null),
+            address: (_address) => {
+              return _address ? setAccount(_address) : null;
+            },
             network: (_network) => (_network ? setChainId(_network) : null),
             balance: (_balance) => (_balance ? setBalance(_balance) : null),
             wallet: (_wallet) => {
@@ -53,7 +55,7 @@ export const useWeb3 = (networkId: number, dappId?: string, theme: string = "lig
     }
   };
   // NOTE: Expose magic, checks if ready to transact otherwise prompts user
-  const web3Connect = useCallback(async () => {
+  const web3Connect = async () => {
     if (onboard == null) return;
     if (library) {
       console.log("library detected");
@@ -67,7 +69,7 @@ export const useWeb3 = (networkId: number, dappId?: string, theme: string = "lig
       console.log("no prefference detected");
       return (await onboard.walletSelect()) ? await onboard.walletCheck() : false;
     }
-  }, [library, onboard, wallet]);
+  };
 
   //NOTE: Disconnect from wallet
   const web3Logout: () => Promise<void> = async () => {
