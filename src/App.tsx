@@ -3,21 +3,10 @@ import {
   ChakraProvider,
   Flex,
   Box,
-  Heading,
-  Text,
-  Link,
   VStack,
-  Code,
   Grid,
-  theme,
-  FormControl,
-  FormLabel,
-  Input,
-  Stack,
-  Checkbox,
   Button,
   CSSReset,
-  chakra,
   Tabs,
   TabList,
   Tab,
@@ -37,8 +26,15 @@ import SetRecipientRegistryForm from "./components/FundingFactory/SetRecipientRe
 import SetTokenForm from "./components/FundingFactory/SetToken";
 import SetUserRegistryForm from "./components/FundingFactory/SetUserRegistry";
 import TransferMatchingFundsForm from "./components/FundingFactory/TransferMatchingFunds";
+import DeployErc20Form from "./components/FactoryFactory/DeployERC20";
+import DeployFundingRoundFactoryForm from "./components/FactoryFactory/DeployFundingFactory";
+import DeployPoseidonT3Form from "./components/FactoryFactory/DeployPoseidonT3";
+import DeployPoseidonT6Form from "./components/FactoryFactory/DeployPoseidonT6";
 import { useWeb3Context } from "./hooks/Web3Provider";
-
+import DeployBatchUpdateStateTreeVerifierForm from "./components/FactoryFactory/DeployBatchUpdateStateTreeVerifier";
+import DeployQuadVoteTallyVerifierForm from "./components/FactoryFactory/DeployQuadVoteTallyVerifier";
+import DeployMACIFactoryForm from "./components/FactoryFactory/DeployMACIFactory";
+import { theme } from "./theme";
 export const App = () => {
   const { web3Start, web3Connect, web3Logout } = useWeb3Context();
   return (
@@ -61,6 +57,13 @@ export const App = () => {
           <Tabs minH="100%" minWidth="100%" isLazy>
             <TabList position="absolute" border="none">
               <VStack alignItems="start" spacing={1}>
+                <Tab>Deploy Test Token</Tab>
+                <Tab>Deploy PoseidonT3 Library</Tab>
+                <Tab>Deploy PoseidonT6 Library</Tab>
+                <Tab>Deploy B.U.S.T. Verifier</Tab>
+                <Tab>Deploy QV Tally Verifier</Tab>
+                <Tab>Deploy Deploy MACI Factory</Tab>
+                <Tab>Deploy Funding Factory</Tab>
                 <Tab>Set User Registry</Tab>
                 <Tab>Set Recipient Registry</Tab>
                 <Tab>Set Token</Tab>
@@ -89,6 +92,28 @@ const LoginArea = () => {
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
       <Box p={4}>
         <TabPanels>
+          <TabPanel>
+            <DeployErc20Form />
+          </TabPanel>
+          <TabPanel>
+            <DeployPoseidonT3Form />
+          </TabPanel>
+          <TabPanel>
+            <DeployPoseidonT6Form />
+          </TabPanel>
+          <TabPanel>
+            <DeployBatchUpdateStateTreeVerifierForm />
+          </TabPanel>
+          <TabPanel>
+            <DeployQuadVoteTallyVerifierForm />
+          </TabPanel>
+          <TabPanel>
+            <DeployMACIFactoryForm />
+          </TabPanel>
+
+          <TabPanel>
+            <DeployFundingRoundFactoryForm />
+          </TabPanel>
           <TabPanel>
             <SetUserRegistryForm />
           </TabPanel>

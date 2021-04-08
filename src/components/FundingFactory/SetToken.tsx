@@ -14,7 +14,7 @@ export const SetTokenForm = (props: any) => {
   const [txLink, setTxLink] = useState<string>("");
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit, errors, register } = useForm();
-  const { validator, handleSetToken, getReceipt, error } = useSetToken("0x5fc8d32690cc91d4c39d9d3abcbd16989f875707");
+  const { validator, handleSetToken, getReceipt, error } = useSetToken("0x7a2088a1bfc9d81c55368ae168c2c02570cb814f");
 
   const onSubmit = async (data) => {
     try {
@@ -46,9 +46,13 @@ export const SetTokenForm = (props: any) => {
   };
 
   return (
-    <Web3Form.Form pt="6" pb="5" onSubmit={handleSubmit(onSubmit)}>
-      <Web3Form.Title mb="21px">SetToken</Web3Form.Title>
-      <Web3Form.Detail mb="32px">This function is used to set the token donations are received in</Web3Form.Detail>
+    <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
+      <Web3Form.Title>Set Token</Web3Form.Title>
+      <Web3Form.Heading detail="These changes will take effect on the next voting round. Voting rounds that have already started or been deployed will not by affected.">
+        This function is used to set the token donations are received in
+      </Web3Form.Heading>
+      <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
+
       <Web3Form.Input
         name="_token"
         label="_token"

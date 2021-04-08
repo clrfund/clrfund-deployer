@@ -1,34 +1,25 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSetMaciParameters } from "../../hooks/FundingFactory";
-import { TransactionReceipt } from "../../hooks/FundingFactory/utils";
+import { useDeployMACIFactory } from "../../hooks/Deploy/useDeployMACIFactory";
 import { Web3Form } from "../Web3Form";
 
-/**
- * @class
- * @classdesc - component for setMaciParameters method
- **/
-export const SetMaciParametersForm = (props: any) => {
+export const DeployMACIFactoryForm = (props: any) => {
   const [txLoading, setTxLoading] = useState<boolean>(false);
   const [txError, setTxError] = useState<boolean | string>(false);
   const [txLink, setTxLink] = useState<string>("");
-  const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
-  const { handleSubmit, errors, register } = useForm();
-  const { validator, handleSetMaciParameters, getReceipt, error } = useSetMaciParameters(
-    "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
-  );
+  const { register, handleSubmit, errors } = useForm();
+  const { validator, handleDeployMACIFactory, error } = useDeployMACIFactory();
 
   const onSubmit = async (data) => {
     try {
       setTxLink("");
       setTxError("");
-
       setTxLoading(true);
-
-      if (validator.checkArgs == null || handleSetMaciParameters.send == null || getReceipt.waitTwoBlocks == null)
-        throw error ? error : handleSetMaciParameters.error;
-
+      if (validator.checkArgs == null || handleDeployMACIFactory.deploy == null)
+        throw error ? error : handleDeployMACIFactory.error;
       const ok = await validator.checkArgs(
+        data.poseidonT3Address,
+        data.poseidonT6Address,
         data._stateTreeDepth,
         data._messageTreeDepth,
         data._voteOptionTreeDepth,
@@ -40,8 +31,9 @@ export const SetMaciParametersForm = (props: any) => {
         data._votingDuration
       );
       if (!ok) throw Error("Failed smartcontract requirements");
-
-      const tx = await handleSetMaciParameters.send(
+      const MACIFactoryContract = await handleDeployMACIFactory.deploy(
+        data.poseidonT3Address,
+        data.poseidonT6Address,
         data._stateTreeDepth,
         data._messageTreeDepth,
         data._voteOptionTreeDepth,
@@ -52,12 +44,7 @@ export const SetMaciParametersForm = (props: any) => {
         data._signUpDuration,
         data._votingDuration
       );
-      setTxLink("https://etherscan.io/tx/" + tx.hash);
-
-      const { receipt, error: getReceiptError } = await getReceipt.waitTwoBlocks(tx.hash);
-      if (getReceiptError) throw getReceiptError;
-
-      setTxReceipt(receipt);
+      setTxLink("https://blockscout.com/xdai/mainnet/address/" + MACIFactoryContract.address + "/transactions");
       setTxLoading(false);
     } catch (e) {
       console.log(e);
@@ -68,12 +55,39 @@ export const SetMaciParametersForm = (props: any) => {
 
   return (
     <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
-      <Web3Form.Title>Set Maci Parameters</Web3Form.Title>
-      <Web3Form.Heading detail="These changes will take effect on the next voting round. Voting rounds that have already started or been deployed will not by affected.">
-        This function is used to set Maci parameters
+      <Web3Form.Title>Deploy MACIFactory</Web3Form.Title>
+      <Web3Form.Heading detail="Deploying contracts can be expensive, make sure to note the addreses of the contracts deployed, you will need them in the following steps.">
+        This Deploys an MACIFactory Contract needed to Deploy a Funding Factory
       </Web3Form.Heading>
       <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
-
+      <Web3Form.Input
+        name="poseidonT3Address"
+        label="poseidonT3Address"
+        placeholder="address"
+        ref={register(Web3Form.registerAddress)}
+        errors={errors}
+      />
+      <Web3Form.Input
+        name="poseidonT6Address"
+        label="poseidonT6Address"
+        placeholder="address"
+        ref={register(Web3Form.registerAddress)}
+        errors={errors}
+      />
+      <Web3Form.Input
+        name="_qvtVerifier"
+        label="_qvtVerifier"
+        placeholder="address"
+        ref={register(Web3Form.registerAddress)}
+        errors={errors}
+      />
+      <Web3Form.Input
+        name="_batchUstVerifier"
+        label="_batchUstVerifier"
+        placeholder="address"
+        ref={register(Web3Form.registerAddress)}
+        errors={errors}
+      />
       <Web3Form.Input
         name="_stateTreeDepth"
         label="_stateTreeDepth"
@@ -110,20 +124,6 @@ export const SetMaciParametersForm = (props: any) => {
         errors={errors}
       />
       <Web3Form.Input
-        name="_batchUstVerifier"
-        label="_batchUstVerifier"
-        placeholder="address"
-        ref={register(Web3Form.registerAddress)}
-        errors={errors}
-      />
-      <Web3Form.Input
-        name="_qvtVerifier"
-        label="_qvtVerifier"
-        placeholder="address"
-        ref={register(Web3Form.registerAddress)}
-        errors={errors}
-      />
-      <Web3Form.Input
         name="_signUpDuration"
         label="_signUpDuration"
         placeholder="uint256"
@@ -137,12 +137,12 @@ export const SetMaciParametersForm = (props: any) => {
         ref={register(Web3Form.registerUint256)}
         errors={errors}
       />
-      <Web3Form.Submit loading={txLoading}>Set Maci Parameters</Web3Form.Submit>
+
+      <Web3Form.Submit loading={txLoading}>Deploy MACI Factory</Web3Form.Submit>
       <Web3Form.Error error={txError} />
       <Web3Form.ExplorerLink url={txLink} />
-      <Web3Form.Receipt receipt={txReceipt} />
     </Web3Form.Form>
   );
 };
 
-export default SetMaciParametersForm;
+export default DeployMACIFactoryForm;

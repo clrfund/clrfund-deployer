@@ -15,7 +15,7 @@ export const CoordinatorQuitForm = (props: any) => {
   const [txReceipt, setTxReceipt] = useState<TransactionReceipt | null>(null);
   const { handleSubmit } = useForm();
   const { validator, handleCoordinatorQuit, getReceipt, error } = useCoordinatorQuit(
-    "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707"
+    "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
   );
   const onSubmit = async (data) => {
     try {
@@ -46,10 +46,16 @@ export const CoordinatorQuitForm = (props: any) => {
   };
 
   return (
-    <Web3Form.Form pt="6" pb="5" onSubmit={handleSubmit(onSubmit)}>
-      <Web3Form.Title mb="21px">CoordinatorQuit</Web3Form.Title>
-      <Web3Form.Detail mb="32px">This function is used for the coordinator to quit.</Web3Form.Detail>
-      <Web3Form.Submit loading={txLoading}>Coordinator Rage Quit</Web3Form.Submit>
+    <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
+      <Web3Form.Title>CoordinatorQuit</Web3Form.Title>
+
+      <Web3Form.Heading detail="These changes will take effect on the current voting round immediately. Proceed with caution.">
+        This function is used for the coordinator to quit.
+      </Web3Form.Heading>
+      <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
+      <Web3Form.Submit colorScheme="red" color="red.300" loading={txLoading}>
+        Rage Quit
+      </Web3Form.Submit>
       <Web3Form.Error error={txError} />
       <Web3Form.ExplorerLink url={txLink} />
       <Web3Form.Receipt receipt={txReceipt} />
