@@ -15,7 +15,7 @@ export const SetMaciParametersForm = (props: any) => {
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit, errors, register } = useForm();
   const { validator, handleSetMaciParameters, getReceipt, error } = useSetMaciParameters(
-    "0x0dA71825182944234F45755989a8C96Ac1343E07"
+    "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
   );
 
   const onSubmit = async (data) => {
@@ -67,9 +67,13 @@ export const SetMaciParametersForm = (props: any) => {
   };
 
   return (
-    <Web3Form.Form my="50px" pt="6" pb="5" onSubmit={handleSubmit(onSubmit)}>
-      <Web3Form.Title mb="21px">SetMaciParameters</Web3Form.Title>
-      <Web3Form.Detail mb="32px">This function is used to set Maci parameters</Web3Form.Detail>
+    <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
+      <Web3Form.Title>Set Maci Parameters</Web3Form.Title>
+      <Web3Form.Heading detail="These changes will take effect on the next voting round. Voting rounds that have already started or been deployed will not by affected.">
+        This function is used to set Maci parameters
+      </Web3Form.Heading>
+      <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
+
       <Web3Form.Input
         name="_stateTreeDepth"
         label="_stateTreeDepth"

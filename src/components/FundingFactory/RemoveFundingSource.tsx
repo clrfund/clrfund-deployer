@@ -15,7 +15,7 @@ export const RemoveFundingSourceForm = (props: any) => {
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit, errors, register } = useForm();
   const { validator, handleRemoveFundingSource, getReceipt, error } = useRemoveFundingSource(
-    "0x0dA71825182944234F45755989a8C96Ac1343E07"
+    "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
   );
 
   const onSubmit = async (data) => {
@@ -47,9 +47,14 @@ export const RemoveFundingSourceForm = (props: any) => {
   };
 
   return (
-    <Web3Form.Form pt="6" pb="5" onSubmit={handleSubmit(onSubmit)}>
-      <Web3Form.Title mb="21px">RemoveFundingSource</Web3Form.Title>
-      <Web3Form.Detail mb="32px">This function is used to remove a funding source</Web3Form.Detail>
+    <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
+      <Web3Form.Title>RemoveFundingSource</Web3Form.Title>
+
+      <Web3Form.Heading detail="These changes will take effect on the current voting round immediately. Proceed with caution.">
+        This function is used to remove a funding source.
+      </Web3Form.Heading>
+      <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
+
       <Web3Form.Input
         name="_source"
         label="_source"
@@ -57,7 +62,10 @@ export const RemoveFundingSourceForm = (props: any) => {
         ref={register(Web3Form.registerAddress)}
         errors={errors}
       />
-      <Web3Form.Submit loading={txLoading}>Remove Funding Source</Web3Form.Submit>
+
+      <Web3Form.Submit colorScheme="red" color="red.300" loading={txLoading}>
+        Remove Funding Source
+      </Web3Form.Submit>
       <Web3Form.Error error={txError} />
       <Web3Form.ExplorerLink url={txLink} />
       <Web3Form.Receipt receipt={txReceipt} />

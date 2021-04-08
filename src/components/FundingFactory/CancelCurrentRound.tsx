@@ -14,7 +14,7 @@ export const CancelCurrentRoundForm = (props: any) => {
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit } = useForm();
   const { validator, handleCancelCurrentRound, getReceipt, error } = useCancelCurrentRound(
-    "0x0dA71825182944234F45755989a8C96Ac1343E07"
+    "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
   );
   const onSubmit = async (data) => {
     try {
@@ -22,7 +22,6 @@ export const CancelCurrentRoundForm = (props: any) => {
       setTxError("");
 
       setTxLoading(true);
-      console.log(handleCancelCurrentRound);
       if (validator.checkArgs == null || handleCancelCurrentRound.send == null || getReceipt.waitTwoBlocks == null)
         throw error ? error : handleCancelCurrentRound.error;
 
@@ -45,11 +44,16 @@ export const CancelCurrentRoundForm = (props: any) => {
   };
 
   return (
-    <Web3Form.Form pt="6" pb="5" onSubmit={handleSubmit(onSubmit)}>
-      <Web3Form.Title mb="21px">CancelCurrentRound</Web3Form.Title>
-      <Web3Form.Detail mb="32px">This function is used to cancel the current round.</Web3Form.Detail>
+    <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
+      <Web3Form.Title>Cancel Current Round</Web3Form.Title>
+      <Web3Form.Heading detail="These changes will take effect on the current voting round immediately. Proceed with caution.">
+        This function is used to cancel the current round.
+      </Web3Form.Heading>
+      <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
 
-      <Web3Form.Submit loading={txLoading}>Cancel Current Round</Web3Form.Submit>
+      <Web3Form.Submit colorScheme="red" color="red.300" loading={txLoading}>
+        Cancel Current Round
+      </Web3Form.Submit>
       <Web3Form.Error error={txError} />
       <Web3Form.ExplorerLink url={txLink} />
       <Web3Form.Receipt receipt={txReceipt} />

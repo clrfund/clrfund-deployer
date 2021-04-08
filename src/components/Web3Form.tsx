@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Box, Flex, Input, Button, Spinner, chakra, forwardRef, BoxProps } from "@chakra-ui/react";
+import { Box, Flex, Input, Button, Spinner, chakra, forwardRef, BoxProps, Divider, Center } from "@chakra-ui/react";
 
 import { ErrorMessage } from "./ErrorMessage";
 
@@ -16,15 +16,16 @@ export interface RegisterHelper {
 export const Form = ({ children, ...rest }) => {
   return (
     <chakra.form
+      pt="36px"
+      pb="5"
       sx={{
         left: "0px",
         top: "0px",
-        minWidth: "359px",
-        minHeight: "220px",
+        width: ["359px", "359px", "680px"],
         background: "linear-gradient(103.01deg, rgba(0, 0, 0, 0.5) 0.49%, rgba(0, 0, 0, 0.4) 100%)",
         boxShadow: "0px 16px 32px rgba(134, 124, 210, 0.2)",
         backdropFilter: "blur(50px)",
-        borderRadius: "32px",
+        borderRadius: "15px",
       }}
       {...rest}>
       {children}
@@ -34,18 +35,77 @@ export const Form = ({ children, ...rest }) => {
 
 export const FormTitle = ({ children, ...rest }) => {
   return (
-    <Box
-      sx={{
-        fontFamily: "heading",
-        fontSize: "20px",
-        lineHeight: "24px",
-        textAlign: "center",
-        textTransform: "capitalize",
-        color: "white",
-      }}
-      {...rest}>
-      {children}
-    </Box>
+    <>
+      <Box
+        sx={{
+          textAlign: "left",
+          px: "30px",
+          fontFamily: "Futura",
+          fontStyle: "normal",
+          fontWeight: "bold",
+          fontSize: "18px",
+          lineHeight: "150%",
+        }}
+        {...rest}>
+        {children}
+      </Box>
+      <Box
+        sx={{
+          textAlign: "left",
+          px: "30px",
+          pt: "17px",
+          fontFamily: "Inter",
+          fontStyle: "normal",
+          fontWeight: "normal",
+          fontSize: "14px",
+          lineHeight: "150%",
+          color: "#E0E0E0",
+        }}>
+        You may leave the default values or modify them to fit your needs here.
+      </Box>
+    </>
+  );
+};
+export const FormHeading = ({ detail, children, ...rest }) => {
+  return (
+    <>
+      <Box
+        sx={{
+          textAlign: "left",
+          px: "30px",
+          pt: "27px",
+          fontFamily: "Futura",
+          fontStyle: "normal",
+          fontWeight: "bold",
+          fontSize: "16px",
+          lineHeight: "21px",
+          letterSpacing: "2px",
+          textTransform: "uppercase",
+        }}
+        {...rest}>
+        {children}
+      </Box>
+      <Flex pt="14px" width="100%" alignItems="center" alignContent="center">
+        <Box mx="30px" width="calc(98% - 60px)">
+          <Divider sx={{ border: "1px solid #7375A6" }} />
+        </Box>
+      </Flex>
+
+      <Box
+        sx={{
+          textAlign: "left",
+          px: "30px",
+          pt: "17px",
+          fontFamily: "Inter",
+          fontStyle: "normal",
+          fontWeight: "normal",
+          fontSize: "14px",
+          lineHeight: "150%",
+          color: "#E0E0E0",
+        }}>
+        {detail}
+      </Box>
+    </>
   );
 };
 
@@ -53,16 +113,18 @@ export const FormDetail = (props) => {
   return (
     <Box
       sx={{
-        fontFamily: "detail",
-        fontSize: "12px",
-        lineHeight: "14px",
-        textAlign: "center",
-        fontWeight: "regular",
-        color: "white",
+        fontFamily: "Helvetica",
+        px: "30px",
+        pt: "17px",
         overflow: "hidden",
+        fontStyle: "normal",
+        fontWeight: "bold",
+        fontSize: "8px",
+        lineHeight: "9px",
+        textAlign: "left",
+        textTransform: "uppercase",
+        color: "#FBFF45",
       }}
-      width="266px"
-      margin="auto"
       {...props}
     />
   );
@@ -77,30 +139,34 @@ export const FormInput = forwardRef<BoxProps & FormInputProps, "input">((props, 
     <React.Fragment>
       <Flex
         minHeight="80px"
-        mx="5%"
-        my="2.5"
-        py="3"
+        mx="30px"
+        mt="36px"
+        px="19px"
+        pt="12px"
+        pb="14px"
         className="form-item"
         flexDirection="column"
-        boxShadow="0px 16px 32px rgba(134, 124, 210, 0.2)"
-        borderRadius="20px"
         sx={{
-          backdropFilter: "blur(30px)",
           background: "linear-gradient(103.8deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100.69%)",
+          boxShadow: "0px 2px 18px rgba(134, 124, 210, 0.1)",
+          backdropFilter: "blur(30px)",
+          borderRadius: "12px",
         }}>
-        <Flex className="form-label-container" flexWrap="wrap" flexDirection="row" mb="2" verticalAlign="top" mx="4">
-          <Box className="form-label" mr="2">
+        <Flex className="form-label-container" flexWrap="wrap" flexDirection="row" verticalAlign="top">
+          <Box className="form-label">
             <Box
               sx={{
-                fontFamily: "heading",
-                fontSize: "xs",
-                fontWeight: "regular",
-                lineHeight: "19px",
-                color: "#FFFFFF",
                 overflowWrap: "anywhere",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
+                fontFamily: "Futura",
+                fontStyle: "normal",
+                fontWeight: "bold",
+                fontSize: "16px",
+                lineHeight: "21px",
+                textTransform: "capitalize",
+                color: "#FFFFFF",
               }}
               {...props}>
               {props.label}
@@ -133,21 +199,23 @@ export const FormInput = forwardRef<BoxProps & FormInputProps, "input">((props, 
             )}
           />
         </Flex>
-        <Flex className="form-input-container" flexDirection="row" mx="4">
+        <Flex className="form-input-container" flexDirection="row" mt="10px">
           <Input
             ref={ref}
             className="form-input"
             name={props.name}
             placeholder={props.placeholder}
+            pl={1}
             sx={{
               border: "none",
               width: "100%",
-              fontSize: "base",
-              lineHeight: "26px",
-              fontFamily: "heading",
-              fontWeight: "normal",
               background: "transparent",
               color: "#FFFFFF",
+              fontFamily: "Inter",
+              fontStyle: "normal",
+              fontWeight: "normal",
+              fontSize: "16px",
+              lineHeight: "150%",
             }}
           />
         </Flex>
@@ -160,34 +228,31 @@ export interface FormSubmitProps {
   loading?: boolean;
 }
 export const FormSubmit = ({ children, loading, ...rest }) => {
-  return loading ? (
+  return (
     <React.Fragment>
-      <Flex mx="auto" className="form-submit" flexDirection="column">
-        <Spinner />
-      </Flex>
-    </React.Fragment>
-  ) : (
-    <React.Fragment>
-      <Flex mx="auto" className="form-submit" flexDirection="column">
+      <Flex my="35px" mx="auto" className="form-submit" flexDirection="column">
         <Button
           type="submit"
+          isLoading={loading as boolean}
+          loadingText="Sending Transaction"
+          colorScheme="teal"
+          variant="outline"
+          height="40px"
+          color="#16C8B5"
           sx={{
-            appearance: "none",
-            display: "inline-block",
-            fontFamily: "Apex Mk3",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            fontSize: "sm",
-            lineHeight: "tight",
-            textAlign: "center",
-            letterSpacing: "tight",
+            width: ["300px", "300px", "auto"],
+            px: ["5px", "5px", "25px"],
             textTransform: "uppercase",
-            color: "text",
-            bg: "background",
-            minWidth: "295px",
-            minHeight: "55px",
-            borderRadius: "2xl",
+            border: "2px solid #16C8B5",
+            boxSizing: "border-box",
+            borderRadius: "32px",
             mx: "auto",
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "600",
+            fontSize: "16px",
+            lineHeight: "150%",
+            textAlign: "center",
           }}
           {...rest}>
           {children}
@@ -245,7 +310,8 @@ export const Receipt = ({ receipt, ...rest }) => {
         <Box
           width="266px"
           mx="auto"
-          textAlign="center"
+          my="3"
+          textAlign="left"
           sx={{
             fontFamily: "monospace",
             fontSize: "8px",
@@ -272,7 +338,6 @@ export const ExplorerLink = ({ url, ...rest }) => {
     <React.Fragment>
       <Flex mx="auto">
         <Box
-          width="266px"
           mx="auto"
           textAlign="center"
           fontSize="12px"
@@ -284,9 +349,10 @@ export const ExplorerLink = ({ url, ...rest }) => {
             lineHeight: "14px",
             textAlign: "center",
             fontWeight: "regular",
-            color: "darksalmon",
+            color: "#16C8B5",
           }}
           href={url}>
+          ExplorerLink:
           {url}
         </Box>
       </Flex>
@@ -329,7 +395,6 @@ const registerBytes32: RegisterHelper = {
     isValidJSON: (value) => {
       try {
         JSON.parse(value);
-        console.log(JSON.parse(value));
       } catch (e) {
         return "Failed to parse JSON";
       }
@@ -359,6 +424,7 @@ const registerString: RegisterHelper = {
 export const Web3Form = {
   Form: Form,
   Title: FormTitle,
+  Heading: FormHeading,
   Detail: FormDetail,
   Input: FormInput,
   Submit: FormSubmit,

@@ -15,7 +15,7 @@ export const AddFundingSourceForm = (props: any) => {
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { register, handleSubmit, errors } = useForm();
   const { validator, handleAddFundingSource, getReceipt, error } = useAddFundingSource(
-    "0x0dA71825182944234F45755989a8C96Ac1343E07"
+    "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
   );
 
   const onSubmit = async (data) => {
@@ -46,13 +46,17 @@ export const AddFundingSourceForm = (props: any) => {
   };
 
   return (
-    <Web3Form.Form pt="6" pb="5" onSubmit={handleSubmit(onSubmit)}>
-      <Web3Form.Title mb="21px">Add Funding Source</Web3Form.Title>
-      <Web3Form.Detail mb="32px">This function is used to add a funding source.</Web3Form.Detail>
+    <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
+      <Web3Form.Title>Add Funding Source</Web3Form.Title>
+      <Web3Form.Heading detail="These changes will take effect on the next voting round. Voting rounds that have already started or been deployed will not by affected.">
+        Set Funding Source for Matching Funds
+      </Web3Form.Heading>
+      <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
+
       <Web3Form.Input
         name="_source"
-        label="_source"
-        placeholder="address"
+        label="Funding Source"
+        placeholder="ADDRESS"
         ref={register(Web3Form.registerAddress)}
         errors={errors}
       />
