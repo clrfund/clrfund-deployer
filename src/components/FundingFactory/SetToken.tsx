@@ -48,7 +48,7 @@ export const SetTokenForm = (props: any) => {
   return (
     <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
       <Web3Form.Title>Set Token</Web3Form.Title>
-      <Web3Form.Heading detail="These changes will take effect on the next voting round. Voting rounds that have already started or been deployed will not by affected.">
+      <Web3Form.Heading detail="These changes will take effect on the next voting round. Voting rounds that have already started or been deployed will not be affected.">
         This function is used to set the token donations are received in
       </Web3Form.Heading>
       <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
