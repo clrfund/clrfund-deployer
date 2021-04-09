@@ -33,7 +33,7 @@ export const DeployFundingRoundFactoryForm = (props: any) => {
     <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
       <Web3Form.Title>Deploy FundingRoundFactory</Web3Form.Title>
       <Web3Form.Heading detail="Deploying contracts can be expensive, make sure to note the addreses of the contracts deployed, you will need them in the following steps.">
-        This Deploys an Funding Round Factory Contract necessary to start a funding round
+        This Deploys a Funding Round Factory Contract necessary to start a funding round
       </Web3Form.Heading>
       <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>
       <Web3Form.Input
