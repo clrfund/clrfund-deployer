@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDeployFundingRoundFactory } from "../../hooks/Deploy/useDeployFundingRoundFactory";
 import { Web3Form } from "../Web3Form";
+import { useHistory } from "react-router-dom";
 
 export const DeployFundingRoundFactoryForm = (props: any) => {
   const [txLoading, setTxLoading] = useState<boolean>(false);
@@ -9,7 +10,7 @@ export const DeployFundingRoundFactoryForm = (props: any) => {
   const [txLink, setTxLink] = useState<string>("");
   const { register, handleSubmit, errors } = useForm();
   const { validator, handleDeployFundingRoundFactory, error } = useDeployFundingRoundFactory();
-
+  const history = useHistory();
   const onSubmit = async (data) => {
     try {
       setTxLink("");
@@ -22,6 +23,13 @@ export const DeployFundingRoundFactoryForm = (props: any) => {
       const FundingRoundFactoryContract = await handleDeployFundingRoundFactory.deploy(data._maciFactory);
       setTxLink("https://blockscout.com/xdai/mainnet/address/" + FundingRoundFactoryContract.address + "/transactions");
       setTxLoading(false);
+      const params = new URLSearchParams();
+      if (FundingRoundFactoryContract.address) {
+        params.append("contract_address", FundingRoundFactoryContract.address);
+      } else {
+        params.delete("contract_address");
+      }
+      history.push({ search: params.toString() });
     } catch (e) {
       console.log(e);
       setTxError(e && e.message ? e.message : "unexpected error");
