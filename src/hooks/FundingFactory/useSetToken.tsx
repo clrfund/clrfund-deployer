@@ -30,7 +30,6 @@ function useSetToken(contractAddress: string) {
         const { data: estimatedGas, error: gasEstimateError } = await handle(
           FundingFactoryContract.estimateGas.setToken(_token)
         );
-
         if (gasEstimateError != null || estimatedGas == null) {
           switch (gasEstimateError?.message) {
             case "Internal JSON-RPC error.":

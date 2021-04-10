@@ -14,7 +14,9 @@ import {
   TabPanel,
   HStack,
 } from "@chakra-ui/react";
+import { theme } from "./theme";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { useWeb3Context } from "./hooks/Web3Provider";
 import AddFundingSourceForm from "./components/FundingFactory/AddFundingSource";
 import CoordinatorQuitForm from "./components/FundingFactory/CoordinatorQuit";
 import CancelCurrentRoundForm from "./components/FundingFactory/CancelCurrentRound";
@@ -30,11 +32,10 @@ import DeployErc20Form from "./components/FactoryFactory/DeployERC20";
 import DeployFundingRoundFactoryForm from "./components/FactoryFactory/DeployFundingFactory";
 import DeployPoseidonT3Form from "./components/FactoryFactory/DeployPoseidonT3";
 import DeployPoseidonT6Form from "./components/FactoryFactory/DeployPoseidonT6";
-import { useWeb3Context } from "./hooks/Web3Provider";
 import DeployBatchUpdateStateTreeVerifierForm from "./components/FactoryFactory/DeployBatchUpdateStateTreeVerifier";
 import DeployQuadVoteTallyVerifierForm from "./components/FactoryFactory/DeployQuadVoteTallyVerifier";
 import DeployMACIFactoryForm from "./components/FactoryFactory/DeployMACIFactory";
-import { theme } from "./theme";
+
 export const App = () => {
   const { web3Start, web3Connect, web3Logout } = useWeb3Context();
   return (

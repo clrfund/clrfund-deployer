@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDeployNewRound } from "../../hooks/FundingFactory";
 import { TransactionReceipt } from "../../hooks/FundingFactory/utils";
 import { Web3Form } from "../Web3Form";
+import { useLocation } from "react-router-dom";
 /**
  * @class
  * @classdesc - component for deployNewRound method
@@ -13,9 +14,15 @@ export const DeployNewRoundForm = (props: any) => {
   const [txLink, setTxLink] = useState<string>("");
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit } = useForm();
-  const { validator, handleDeployNewRound, getReceipt, error } = useDeployNewRound(
-    "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
-  );
+  const [contractAddress, setContractAddress] = useState<string>("0x0dA71825182944234F45755989a8C96Ac1343E07");
+
+  let { search: params } = useLocation();
+  useEffect(() => {
+    const query = new URLSearchParams(params);
+    const contractAddress = query.get("contract_address");
+    setContractAddress(contractAddress ? contractAddress : "0x0dA71825182944234F45755989a8C96Ac1343E07");
+  }, [params]);
+  const { validator, handleDeployNewRound, getReceipt, error } = useDeployNewRound(contractAddress);
 
   const onSubmit = async (data) => {
     try {
@@ -31,7 +38,7 @@ export const DeployNewRoundForm = (props: any) => {
       if (!ok) throw Error("Failed smartcontract requirements");
 
       const tx = await handleDeployNewRound.send();
-      setTxLink("https://etherscan.io/tx/" + tx.hash);
+      setTxLink("https://blockscout.com/xdai/mainnet/tx/" + tx.hash);
 
       const { receipt, error: getReceiptError } = await getReceipt.waitTwoBlocks(tx.hash);
       if (getReceiptError) throw getReceiptError;
