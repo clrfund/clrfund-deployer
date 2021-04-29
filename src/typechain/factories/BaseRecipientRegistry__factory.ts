@@ -23,6 +23,11 @@ export class BaseRecipientRegistry__factory {
 const _abi = [
   {
     inputs: [],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    inputs: [],
     name: "controller",
     outputs: [
       {
