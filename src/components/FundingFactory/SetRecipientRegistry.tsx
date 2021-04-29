@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSetRecipientRegistry } from "../../hooks/FundingFactory";
 import { TransactionReceipt } from "../../hooks/FundingFactory/utils";
 import { Web3Form } from "../Web3Form";
+import { useLocation } from "react-router-dom";
 
 /**
  * @class
@@ -14,9 +15,15 @@ export const SetRecipientRegistryForm = (props: any) => {
   const [txLink, setTxLink] = useState<string>("");
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit, errors, register } = useForm();
-  const { validator, handleSetRecipientRegistry, getReceipt, error } = useSetRecipientRegistry(
-    "0x7a2088a1bfc9d81c55368ae168c2c02570cb814f"
-  );
+  const [contractAddress, setContractAddress] = useState<string>("0x0dA71825182944234F45755989a8C96Ac1343E07");
+
+  let { search: params } = useLocation();
+  useEffect(() => {
+    const query = new URLSearchParams(params);
+    const contractAddress = query.get("contract_address");
+    setContractAddress(contractAddress ? contractAddress : "0x0dA71825182944234F45755989a8C96Ac1343E07");
+  }, [params]);
+  const { validator, handleSetRecipientRegistry, getReceipt, error } = useSetRecipientRegistry(contractAddress);
 
   const onSubmit = async (data) => {
     try {
@@ -32,7 +39,7 @@ export const SetRecipientRegistryForm = (props: any) => {
       if (!ok) throw Error("Failed smartcontract requirements");
 
       const tx = await handleSetRecipientRegistry.send(data._recipientRegistry);
-      setTxLink("https://etherscan.io/tx/" + tx.hash);
+      setTxLink("https://blockscout.com/xdai/mainnet/tx/" + tx.hash);
 
       const { receipt, error: getReceiptError } = await getReceipt.waitTwoBlocks(tx.hash);
       if (getReceiptError) throw getReceiptError;
@@ -49,7 +56,7 @@ export const SetRecipientRegistryForm = (props: any) => {
   return (
     <Web3Form.Form onSubmit={handleSubmit(onSubmit)}>
       <Web3Form.Title>Set Recipient Registry</Web3Form.Title>
-      <Web3Form.Heading detail="These changes will take effect on the next voting round. Voting rounds that have already started or been deployed will not by affected.">
+      <Web3Form.Heading detail="These changes will take effect on the next voting round. Voting rounds that have already started or been deployed will not be affected.">
         This function is used to set the Recipient Registry
       </Web3Form.Heading>
       <Web3Form.Detail>*THIS TOOL IS IN BETA USE AT YOUR OWN RISK</Web3Form.Detail>

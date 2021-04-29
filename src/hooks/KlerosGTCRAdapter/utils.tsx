@@ -1,180 +1,184 @@
 import * as ethers from "ethers";
 import { BigNumber } from "ethers";
 
-const FundingFactoryABI = [
+const KlerosGTCRAdapterABI = [
   {
     inputs: [
       {
+        internalType: "contract IKlerosGTCR",
+        name: "_tcr",
+        type: "address",
+      },
+      {
         internalType: "address",
-        name: "_source",
+        name: "_controller",
         type: "address",
       },
     ],
-    name: "addFundingSource",
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "bytes32",
+        name: "_tcrItemId",
+        type: "bytes32",
+      },
+      {
+        indexed: false,
+        internalType: "bytes",
+        name: "_metadata",
+        type: "bytes",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "_index",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "_timestamp",
+        type: "uint256",
+      },
+    ],
+    name: "RecipientAdded",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "bytes32",
+        name: "_tcrItemId",
+        type: "bytes32",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "_timestamp",
+        type: "uint256",
+      },
+    ],
+    name: "RecipientRemoved",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bytes32",
+        name: "_tcrItemId",
+        type: "bytes32",
+      },
+    ],
+    name: "addRecipient",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
     inputs: [],
-    name: "cancelCurrentRound",
+    name: "controller",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_index",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_startTime",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_endTime",
+        type: "uint256",
+      },
+    ],
+    name: "getRecipientAddress",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "maxRecipients",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bytes32",
+        name: "_tcrItemId",
+        type: "bytes32",
+      },
+    ],
+    name: "removeRecipient",
     outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_maxRecipients",
+        type: "uint256",
+      },
+    ],
+    name: "setMaxRecipients",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
     inputs: [],
-    name: "coordinatorQuit",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "deployNewRound",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
+    name: "tcr",
+    outputs: [
       {
-        internalType: "address",
-        name: "_source",
+        internalType: "contract IKlerosGTCR",
+        name: "",
         type: "address",
       },
     ],
-    name: "removeFundingSource",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_coordinator",
-        type: "address",
-      },
-      {
-        internalType: "string",
-        name: "_coordinatorPubKey",
-        type: "string",
-      },
-    ],
-    name: "setCoordinator",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint8",
-        name: "_stateTreeDepth",
-        type: "uint8",
-      },
-      {
-        internalType: "uint8",
-        name: "_messageTreeDepth",
-        type: "uint8",
-      },
-      {
-        internalType: "uint8",
-        name: "_voteOptionTreeDepth",
-        type: "uint8",
-      },
-      {
-        internalType: "uint8",
-        name: "_tallyBatchSize",
-        type: "uint8",
-      },
-      {
-        internalType: "uint8",
-        name: "_messageBatchSize",
-        type: "uint8",
-      },
-      {
-        internalType: "address",
-        name: "_batchUstVerifier",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "_qvtVerifier",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_signUpDuration",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_votingDuration",
-        type: "uint256",
-      },
-    ],
-    name: "setMaciParameters",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_recipientRegistry",
-        type: "address",
-      },
-    ],
-    name: "setRecipientRegistry",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_token",
-        type: "address",
-      },
-    ],
-    name: "setToken",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_userRegistry",
-        type: "address",
-      },
-    ],
-    name: "setUserRegistry",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_totalSpent",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_totalSpentSalt",
-        type: "uint256",
-      },
-    ],
-    name: "transferMatchingFunds",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function",
   },
 ];
@@ -231,22 +235,27 @@ export function getContract(
   }
 }
 /**
- * @description ### Returns FundingFactory contract using Ethers.js & UncheckedJsonRpcSigner
+ * @description ### Returns KlerosGTCRAdapter contract using Ethers.js & UncheckedJsonRpcSigner
  * - Example response ethers.Contract
  *
  * @param {string} contractAddress
  * @param {number} chainId
  * @returns {Object} ethers.Contract
  */
-export function getFundingFactoryContract(
+export function getKlerosGTCRAdapterContract(
   contractAddress: string,
   library: ethers.providers.Web3Provider,
   account: string
 ) {
-  const { data: fundingFactoryContract, error } = getContract(contractAddress, FundingFactoryABI, library, account);
-  return fundingFactoryContract === undefined || error
+  const { data: klerosGTCRAdapterContract, error } = getContract(
+    contractAddress,
+    KlerosGTCRAdapterABI,
+    library,
+    account
+  );
+  return klerosGTCRAdapterContract === undefined || error
     ? { contract: null, error }
-    : { contract: fundingFactoryContract, error: null };
+    : { contract: klerosGTCRAdapterContract, error: null };
 }
 
 //CC RadHaus 2020

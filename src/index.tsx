@@ -5,12 +5,15 @@ import { App } from "./App";
 import { Web3Provider } from "./hooks/Web3Provider";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
     <ColorModeScript initialColorMode="dark" />
-    <Web3Provider networkId={1337}>
-      <App />
+    <Web3Provider networkId={100}>
+      <Router>
+        <App />
+      </Router>
     </Web3Provider>
   </React.StrictMode>,
   document.getElementById("root")

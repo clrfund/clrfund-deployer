@@ -10,7 +10,7 @@ import './IUserRegistry.sol';
  * @dev A simple user registry managed by a trusted entity.
  */
 contract SimpleUserRegistry is Ownable, IUserRegistry {
-
+  constructor() public{}
   mapping(address => bool) private users;
 
   // Events
