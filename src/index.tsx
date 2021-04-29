@@ -10,7 +10,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     <ColorModeScript initialColorMode="dark" />
-    <Web3Provider networkId={1337}>
+    <Web3Provider networkId={100}>
       <Router>
         <App />
       </Router>
