@@ -3,13 +3,23 @@ import { getFundingFactoryContract, handle, TransactionReceiptOrError } from "./
 import { useWeb3Context } from "../Web3Provider";
 
 /**
- * @description ### Returns handler, validator, receipt, and error hooks for FundingFactory AddFundingSource transactions
- * - Example Response [handleAddFundingSource, validator, getReceipt, error]
- *
- *  @returns handleAddFundingSource(_source:address,)
- *  @returns validator(_source:address,)
- *  @returns getReceipt(hash)
- *  @returns error || null
+ * @description ### Returns  validator,handler, getReceipt, and error hooks for FundingFactory AddFundingSource transactions
+ * - Example Response
+ * {
+      validator: {
+        checkArgs: (_source:address,) => Promise<boolean>;
+        error: null;
+      }
+      handleAddFundingSource: {
+        send: (_source:address,) => Promise<...>;
+        error: null;
+      }
+      getReceipt: {
+        waitTwoBlocks: () => Promise<...>;
+        error: null;
+      }
+      error: Error | null;
+ *   }
  */
 function useAddFundingSource(contractAddress: string) {
   const { library, account, chainId } = useWeb3Context();
