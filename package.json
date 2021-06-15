@@ -1,5 +1,6 @@
 {
   "name": "@clrfund-deployer/web3",
+  "homepage": ".",
   "version": "1.0.0",
   "keywords": [
     "clr.fund",
