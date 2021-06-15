@@ -9,11 +9,13 @@ import {
   BigNumber,
   BigNumberish,
   PopulatedTransaction,
+} from "ethers";
+import {
   Contract,
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from "ethers";
+} from "@ethersproject/contracts";
 import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
@@ -286,21 +288,17 @@ export class FundingRoundFactory extends Contract {
   functions: {
     addFundingSource(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "addFundingSource(address)"(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    cancelCurrentRound(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    cancelCurrentRound(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "cancelCurrentRound()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "cancelCurrentRound()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     coordinator(overrides?: CallOverrides): Promise<[string]>;
 
@@ -314,21 +312,13 @@ export class FundingRoundFactory extends Contract {
       overrides?: CallOverrides
     ): Promise<[BigNumber, BigNumber] & { x: BigNumber; y: BigNumber }>;
 
-    coordinatorQuit(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    coordinatorQuit(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "coordinatorQuit()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "coordinatorQuit()"(overrides?: Overrides): Promise<ContractTransaction>;
 
-    deployNewRound(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    deployNewRound(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "deployNewRound()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "deployNewRound()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     getCurrentRound(
       overrides?: CallOverrides
@@ -366,32 +356,28 @@ export class FundingRoundFactory extends Contract {
 
     removeFundingSource(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "removeFundingSource(address)"(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     setCoordinator(
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setCoordinator(address,(uint256,uint256))"(
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     setMaciParameters(
@@ -404,7 +390,7 @@ export class FundingRoundFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setMaciParameters(uint8,uint8,uint8,uint8,uint8,address,address,uint256,uint256)"(
@@ -417,59 +403,59 @@ export class FundingRoundFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     setRecipientRegistry(
       _recipientRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setRecipientRegistry(address)"(
       _recipientRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     setToken(
       _token: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setToken(address)"(
       _token: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     setUserRegistry(
       _userRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setUserRegistry(address)"(
       _userRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     transferMatchingFunds(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "transferMatchingFunds(uint256,uint256)"(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     userRegistry(overrides?: CallOverrides): Promise<[string]>;
@@ -479,21 +465,17 @@ export class FundingRoundFactory extends Contract {
 
   addFundingSource(
     _source: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "addFundingSource(address)"(
     _source: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  cancelCurrentRound(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  cancelCurrentRound(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "cancelCurrentRound()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "cancelCurrentRound()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   coordinator(overrides?: CallOverrides): Promise<string>;
 
@@ -507,21 +489,13 @@ export class FundingRoundFactory extends Contract {
     overrides?: CallOverrides
   ): Promise<[BigNumber, BigNumber] & { x: BigNumber; y: BigNumber }>;
 
-  coordinatorQuit(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  coordinatorQuit(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "coordinatorQuit()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "coordinatorQuit()"(overrides?: Overrides): Promise<ContractTransaction>;
 
-  deployNewRound(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  deployNewRound(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "deployNewRound()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "deployNewRound()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   getCurrentRound(overrides?: CallOverrides): Promise<string>;
 
@@ -555,32 +529,28 @@ export class FundingRoundFactory extends Contract {
 
   removeFundingSource(
     _source: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "removeFundingSource(address)"(
     _source: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  renounceOwnership(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "renounceOwnership()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   setCoordinator(
     _coordinator: string,
     _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setCoordinator(address,(uint256,uint256))"(
     _coordinator: string,
     _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   setMaciParameters(
@@ -593,7 +563,7 @@ export class FundingRoundFactory extends Contract {
     _qvtVerifier: string,
     _signUpDuration: BigNumberish,
     _votingDuration: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setMaciParameters(uint8,uint8,uint8,uint8,uint8,address,address,uint256,uint256)"(
@@ -606,59 +576,56 @@ export class FundingRoundFactory extends Contract {
     _qvtVerifier: string,
     _signUpDuration: BigNumberish,
     _votingDuration: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   setRecipientRegistry(
     _recipientRegistry: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setRecipientRegistry(address)"(
     _recipientRegistry: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  setToken(
-    _token: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  setToken(_token: string, overrides?: Overrides): Promise<ContractTransaction>;
 
   "setToken(address)"(
     _token: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   setUserRegistry(
     _userRegistry: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setUserRegistry(address)"(
     _userRegistry: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   transferMatchingFunds(
     _totalSpent: BigNumberish,
     _totalSpentSalt: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "transferMatchingFunds(uint256,uint256)"(
     _totalSpent: BigNumberish,
     _totalSpentSalt: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   transferOwnership(
     newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "transferOwnership(address)"(
     newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   userRegistry(overrides?: CallOverrides): Promise<string>;
@@ -866,21 +833,17 @@ export class FundingRoundFactory extends Contract {
   estimateGas: {
     addFundingSource(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "addFundingSource(address)"(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
-    cancelCurrentRound(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    cancelCurrentRound(overrides?: Overrides): Promise<BigNumber>;
 
-    "cancelCurrentRound()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "cancelCurrentRound()"(overrides?: Overrides): Promise<BigNumber>;
 
     coordinator(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -890,21 +853,13 @@ export class FundingRoundFactory extends Contract {
 
     "coordinatorPubKey()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    coordinatorQuit(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    coordinatorQuit(overrides?: Overrides): Promise<BigNumber>;
 
-    "coordinatorQuit()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "coordinatorQuit()"(overrides?: Overrides): Promise<BigNumber>;
 
-    deployNewRound(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    deployNewRound(overrides?: Overrides): Promise<BigNumber>;
 
-    "deployNewRound()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "deployNewRound()"(overrides?: Overrides): Promise<BigNumber>;
 
     getCurrentRound(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -938,32 +893,28 @@ export class FundingRoundFactory extends Contract {
 
     removeFundingSource(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "removeFundingSource(address)"(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    renounceOwnership(overrides?: Overrides): Promise<BigNumber>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<BigNumber>;
 
     setCoordinator(
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setCoordinator(address,(uint256,uint256))"(
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     setMaciParameters(
@@ -976,7 +927,7 @@ export class FundingRoundFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setMaciParameters(uint8,uint8,uint8,uint8,uint8,address,address,uint256,uint256)"(
@@ -989,59 +940,56 @@ export class FundingRoundFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     setRecipientRegistry(
       _recipientRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setRecipientRegistry(address)"(
       _recipientRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
-    setToken(
-      _token: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    setToken(_token: string, overrides?: Overrides): Promise<BigNumber>;
 
     "setToken(address)"(
       _token: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     setUserRegistry(
       _userRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setUserRegistry(address)"(
       _userRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     transferMatchingFunds(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "transferMatchingFunds(uint256,uint256)"(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     userRegistry(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1052,20 +1000,18 @@ export class FundingRoundFactory extends Contract {
   populateTransaction: {
     addFundingSource(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "addFundingSource(address)"(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    cancelCurrentRound(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    cancelCurrentRound(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     "cancelCurrentRound()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     coordinator(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1078,21 +1024,13 @@ export class FundingRoundFactory extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    coordinatorQuit(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    coordinatorQuit(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "coordinatorQuit()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    "coordinatorQuit()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    deployNewRound(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    deployNewRound(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "deployNewRound()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    "deployNewRound()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     getCurrentRound(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -1130,32 +1068,28 @@ export class FundingRoundFactory extends Contract {
 
     removeFundingSource(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "removeFundingSource(address)"(
       _source: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    renounceOwnership(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     setCoordinator(
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setCoordinator(address,(uint256,uint256))"(
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setMaciParameters(
@@ -1168,7 +1102,7 @@ export class FundingRoundFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setMaciParameters(uint8,uint8,uint8,uint8,uint8,address,address,uint256,uint256)"(
@@ -1181,59 +1115,59 @@ export class FundingRoundFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setRecipientRegistry(
       _recipientRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setRecipientRegistry(address)"(
       _recipientRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setToken(
       _token: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setToken(address)"(
       _token: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setUserRegistry(
       _userRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setUserRegistry(address)"(
       _userRegistry: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     transferMatchingFunds(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "transferMatchingFunds(uint256,uint256)"(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     userRegistry(overrides?: CallOverrides): Promise<PopulatedTransaction>;

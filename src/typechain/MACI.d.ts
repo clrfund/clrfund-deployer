@@ -9,11 +9,13 @@ import {
   BigNumber,
   BigNumberish,
   PopulatedTransaction,
+} from "ethers";
+import {
   Contract,
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from "ethers";
+} from "@ethersproject/contracts";
 import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
@@ -659,7 +661,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "batchProcessMessage(uint256,tuple[],uint256[8])"(
@@ -675,7 +677,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     calcEmptyVoteOptionTreeRoot(
@@ -748,13 +750,9 @@ export class MACI extends Contract {
       overrides?: CallOverrides
     ): Promise<[BigNumber, BigNumber] & { x: BigNumber; y: BigNumber }>;
 
-    coordinatorReset(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    coordinatorReset(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "coordinatorReset()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "coordinatorReset()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     currentMessageBatchIndex(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -1012,7 +1010,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "proveVoteTallyBatch(uint256,uint256,uint256,uint256,uint256,uint256[8])"(
@@ -1031,7 +1029,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     publishMessage(
@@ -1051,7 +1049,7 @@ export class MACI extends Contract {
         ];
       },
       _encPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "publishMessage((uint256,uint256[10]),(uint256,uint256))"(
@@ -1071,21 +1069,21 @@ export class MACI extends Contract {
         ];
       },
       _encPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     signUp(
       _userPubKey: { x: BigNumberish; y: BigNumberish },
       _signUpGatekeeperData: BytesLike,
       _initialVoiceCreditProxyData: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "signUp((uint256,uint256),bytes,bytes)"(
       _userPubKey: { x: BigNumberish; y: BigNumberish },
       _signUpGatekeeperData: BytesLike,
       _initialVoiceCreditProxyData: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     signUpDurationSeconds(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -1254,7 +1252,7 @@ export class MACI extends Contract {
       BigNumberish,
       BigNumberish
     ],
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "batchProcessMessage(uint256,tuple[],uint256[8])"(
@@ -1270,7 +1268,7 @@ export class MACI extends Contract {
       BigNumberish,
       BigNumberish
     ],
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   calcEmptyVoteOptionTreeRoot(
@@ -1343,13 +1341,9 @@ export class MACI extends Contract {
     overrides?: CallOverrides
   ): Promise<[BigNumber, BigNumber] & { x: BigNumber; y: BigNumber }>;
 
-  coordinatorReset(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  coordinatorReset(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "coordinatorReset()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "coordinatorReset()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   currentMessageBatchIndex(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -1596,7 +1590,7 @@ export class MACI extends Contract {
       BigNumberish,
       BigNumberish
     ],
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "proveVoteTallyBatch(uint256,uint256,uint256,uint256,uint256,uint256[8])"(
@@ -1615,7 +1609,7 @@ export class MACI extends Contract {
       BigNumberish,
       BigNumberish
     ],
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   publishMessage(
@@ -1635,7 +1629,7 @@ export class MACI extends Contract {
       ];
     },
     _encPubKey: { x: BigNumberish; y: BigNumberish },
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "publishMessage((uint256,uint256[10]),(uint256,uint256))"(
@@ -1655,21 +1649,21 @@ export class MACI extends Contract {
       ];
     },
     _encPubKey: { x: BigNumberish; y: BigNumberish },
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   signUp(
     _userPubKey: { x: BigNumberish; y: BigNumberish },
     _signUpGatekeeperData: BytesLike,
     _initialVoiceCreditProxyData: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "signUp((uint256,uint256),bytes,bytes)"(
     _userPubKey: { x: BigNumberish; y: BigNumberish },
     _signUpGatekeeperData: BytesLike,
     _initialVoiceCreditProxyData: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   signUpDurationSeconds(overrides?: CallOverrides): Promise<BigNumber>;
@@ -2422,7 +2416,8 @@ export class MACI extends Contract {
             BigNumber,
             BigNumber
           ]
-        ] & {
+        ],
+        {
           iv: BigNumber;
           data: [
             BigNumber,
@@ -2438,8 +2433,7 @@ export class MACI extends Contract {
           ];
         },
         [BigNumber, BigNumber] & { x: BigNumber; y: BigNumber }
-      ],
-      {
+      ] & {
         _message: [
           BigNumber,
           [
@@ -2479,11 +2473,11 @@ export class MACI extends Contract {
       _voiceCreditBalance: null
     ): TypedEventFilter<
       [
-        [BigNumber, BigNumber] & { x: BigNumber; y: BigNumber },
+        [BigNumber, BigNumber],
+        { x: BigNumber; y: BigNumber },
         BigNumber,
         BigNumber
-      ],
-      {
+      ] & {
         _userPubKey: [BigNumber, BigNumber] & { x: BigNumber; y: BigNumber };
         _stateIndex: BigNumber;
         _voiceCreditBalance: BigNumber;
@@ -2505,7 +2499,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "batchProcessMessage(uint256,tuple[],uint256[8])"(
@@ -2521,7 +2515,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     calcEmptyVoteOptionTreeRoot(
@@ -2590,13 +2584,9 @@ export class MACI extends Contract {
 
     "coordinatorPubKey()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    coordinatorReset(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    coordinatorReset(overrides?: Overrides): Promise<BigNumber>;
 
-    "coordinatorReset()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "coordinatorReset()"(overrides?: Overrides): Promise<BigNumber>;
 
     currentMessageBatchIndex(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -2846,7 +2836,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "proveVoteTallyBatch(uint256,uint256,uint256,uint256,uint256,uint256[8])"(
@@ -2865,7 +2855,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     publishMessage(
@@ -2885,7 +2875,7 @@ export class MACI extends Contract {
         ];
       },
       _encPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "publishMessage((uint256,uint256[10]),(uint256,uint256))"(
@@ -2905,21 +2895,21 @@ export class MACI extends Contract {
         ];
       },
       _encPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     signUp(
       _userPubKey: { x: BigNumberish; y: BigNumberish },
       _signUpGatekeeperData: BytesLike,
       _initialVoiceCreditProxyData: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "signUp((uint256,uint256),bytes,bytes)"(
       _userPubKey: { x: BigNumberish; y: BigNumberish },
       _signUpGatekeeperData: BytesLike,
       _initialVoiceCreditProxyData: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     signUpDurationSeconds(overrides?: CallOverrides): Promise<BigNumber>;
@@ -3059,7 +3049,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "batchProcessMessage(uint256,tuple[],uint256[8])"(
@@ -3075,7 +3065,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     calcEmptyVoteOptionTreeRoot(
@@ -3158,13 +3148,9 @@ export class MACI extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    coordinatorReset(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    coordinatorReset(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "coordinatorReset()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    "coordinatorReset()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     currentMessageBatchIndex(
       overrides?: CallOverrides
@@ -3458,7 +3444,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "proveVoteTallyBatch(uint256,uint256,uint256,uint256,uint256,uint256[8])"(
@@ -3477,7 +3463,7 @@ export class MACI extends Contract {
         BigNumberish,
         BigNumberish
       ],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     publishMessage(
@@ -3497,7 +3483,7 @@ export class MACI extends Contract {
         ];
       },
       _encPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "publishMessage((uint256,uint256[10]),(uint256,uint256))"(
@@ -3517,21 +3503,21 @@ export class MACI extends Contract {
         ];
       },
       _encPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     signUp(
       _userPubKey: { x: BigNumberish; y: BigNumberish },
       _signUpGatekeeperData: BytesLike,
       _initialVoiceCreditProxyData: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "signUp((uint256,uint256),bytes,bytes)"(
       _userPubKey: { x: BigNumberish; y: BigNumberish },
       _signUpGatekeeperData: BytesLike,
       _initialVoiceCreditProxyData: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     signUpDurationSeconds(

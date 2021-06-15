@@ -2,14 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import {
-  Signer,
-  BigNumberish,
-  Contract,
-  ContractFactory,
-  Overrides,
-} from "ethers";
+import { Signer, BigNumberish } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { AnyOldERC20Token } from "../AnyOldERC20Token";
 
@@ -20,16 +15,15 @@ export class AnyOldERC20Token__factory extends ContractFactory {
 
   deploy(
     initialSupply: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<AnyOldERC20Token> {
-    return super.deploy(
-      initialSupply,
-      overrides || {}
-    ) as Promise<AnyOldERC20Token>;
+    return super.deploy(initialSupply, overrides || {}) as Promise<
+      AnyOldERC20Token
+    >;
   }
   getDeployTransaction(
     initialSupply: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): TransactionRequest {
     return super.getDeployTransaction(initialSupply, overrides || {});
   }

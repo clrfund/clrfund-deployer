@@ -9,11 +9,13 @@ import {
   BigNumber,
   BigNumberish,
   PopulatedTransaction,
+} from "ethers";
+import {
   Contract,
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from "ethers";
+} from "@ethersproject/contracts";
 import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
@@ -304,13 +306,9 @@ export class FundingRound extends Contract {
   interface: FundingRoundInterface;
 
   functions: {
-    cancel(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    cancel(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "cancel()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "cancel()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     claimFunds(
       _voteOptionIndex: BigNumberish,
@@ -320,7 +318,7 @@ export class FundingRound extends Contract {
       _spent: BigNumberish,
       _spentProof: BigNumberish[][],
       _spentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "claimFunds(uint256,uint256,uint256[][],uint256,uint256,uint256[][],uint256)"(
@@ -331,19 +329,19 @@ export class FundingRound extends Contract {
       _spent: BigNumberish,
       _spentProof: BigNumberish[][],
       _spentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     contribute(
       pubKey: { x: BigNumberish; y: BigNumberish },
       amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "contribute((uint256,uint256),uint256)"(
       pubKey: { x: BigNumberish; y: BigNumberish },
       amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     contributorCount(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -357,13 +355,13 @@ export class FundingRound extends Contract {
     finalize(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "finalize(uint256,uint256)"(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     getAllocatedAmount(
@@ -416,12 +414,12 @@ export class FundingRound extends Contract {
 
     publishTallyHash(
       _tallyHash: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "publishTallyHash(string)"(
       _tallyHash: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     recipientRegistry(overrides?: CallOverrides): Promise<[string]>;
@@ -431,31 +429,24 @@ export class FundingRound extends Contract {
     register(
       arg0: string,
       _data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "register(address,bytes)"(
       arg0: string,
       _data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
-    setMaci(
-      _maci: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    setMaci(_maci: string, overrides?: Overrides): Promise<ContractTransaction>;
 
     "setMaci(address)"(
       _maci: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     submitMessageBatch(
@@ -475,7 +466,7 @@ export class FundingRound extends Contract {
         ];
       }[],
       _encPubKeys: { x: BigNumberish; y: BigNumberish }[],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "submitMessageBatch(tuple[],tuple[])"(
@@ -495,7 +486,7 @@ export class FundingRound extends Contract {
         ];
       }[],
       _encPubKeys: { x: BigNumberish; y: BigNumberish }[],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     tallyHash(overrides?: CallOverrides): Promise<[string]>;
@@ -512,12 +503,12 @@ export class FundingRound extends Contract {
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     userRegistry(overrides?: CallOverrides): Promise<[string]>;
@@ -528,22 +519,16 @@ export class FundingRound extends Contract {
 
     "voiceCreditFactor()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    withdrawContribution(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    withdrawContribution(overrides?: Overrides): Promise<ContractTransaction>;
 
     "withdrawContribution()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
 
-  cancel(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  cancel(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "cancel()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "cancel()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   claimFunds(
     _voteOptionIndex: BigNumberish,
@@ -553,7 +538,7 @@ export class FundingRound extends Contract {
     _spent: BigNumberish,
     _spentProof: BigNumberish[][],
     _spentSalt: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "claimFunds(uint256,uint256,uint256[][],uint256,uint256,uint256[][],uint256)"(
@@ -564,19 +549,19 @@ export class FundingRound extends Contract {
     _spent: BigNumberish,
     _spentProof: BigNumberish[][],
     _spentSalt: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   contribute(
     pubKey: { x: BigNumberish; y: BigNumberish },
     amount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "contribute((uint256,uint256),uint256)"(
     pubKey: { x: BigNumberish; y: BigNumberish },
     amount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   contributorCount(overrides?: CallOverrides): Promise<BigNumber>;
@@ -590,13 +575,13 @@ export class FundingRound extends Contract {
   finalize(
     _totalSpent: BigNumberish,
     _totalSpentSalt: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "finalize(uint256,uint256)"(
     _totalSpent: BigNumberish,
     _totalSpentSalt: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   getAllocatedAmount(
@@ -649,12 +634,12 @@ export class FundingRound extends Contract {
 
   publishTallyHash(
     _tallyHash: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "publishTallyHash(string)"(
     _tallyHash: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   recipientRegistry(overrides?: CallOverrides): Promise<string>;
@@ -664,31 +649,24 @@ export class FundingRound extends Contract {
   register(
     arg0: string,
     _data: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "register(address,bytes)"(
     arg0: string,
     _data: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  renounceOwnership(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "renounceOwnership()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
-  setMaci(
-    _maci: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  setMaci(_maci: string, overrides?: Overrides): Promise<ContractTransaction>;
 
   "setMaci(address)"(
     _maci: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   submitMessageBatch(
@@ -708,7 +686,7 @@ export class FundingRound extends Contract {
       ];
     }[],
     _encPubKeys: { x: BigNumberish; y: BigNumberish }[],
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "submitMessageBatch(tuple[],tuple[])"(
@@ -728,7 +706,7 @@ export class FundingRound extends Contract {
       ];
     }[],
     _encPubKeys: { x: BigNumberish; y: BigNumberish }[],
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   tallyHash(overrides?: CallOverrides): Promise<string>;
@@ -745,12 +723,12 @@ export class FundingRound extends Contract {
 
   transferOwnership(
     newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "transferOwnership(address)"(
     newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   userRegistry(overrides?: CallOverrides): Promise<string>;
@@ -761,13 +739,9 @@ export class FundingRound extends Contract {
 
   "voiceCreditFactor()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-  withdrawContribution(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  withdrawContribution(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "withdrawContribution()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "withdrawContribution()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   callStatic: {
     cancel(overrides?: CallOverrides): Promise<void>;
@@ -1021,13 +995,9 @@ export class FundingRound extends Contract {
   };
 
   estimateGas: {
-    cancel(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    cancel(overrides?: Overrides): Promise<BigNumber>;
 
-    "cancel()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "cancel()"(overrides?: Overrides): Promise<BigNumber>;
 
     claimFunds(
       _voteOptionIndex: BigNumberish,
@@ -1037,7 +1007,7 @@ export class FundingRound extends Contract {
       _spent: BigNumberish,
       _spentProof: BigNumberish[][],
       _spentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "claimFunds(uint256,uint256,uint256[][],uint256,uint256,uint256[][],uint256)"(
@@ -1048,19 +1018,19 @@ export class FundingRound extends Contract {
       _spent: BigNumberish,
       _spentProof: BigNumberish[][],
       _spentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     contribute(
       pubKey: { x: BigNumberish; y: BigNumberish },
       amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "contribute((uint256,uint256),uint256)"(
       pubKey: { x: BigNumberish; y: BigNumberish },
       amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     contributorCount(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1074,13 +1044,13 @@ export class FundingRound extends Contract {
     finalize(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "finalize(uint256,uint256)"(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     getAllocatedAmount(
@@ -1133,12 +1103,12 @@ export class FundingRound extends Contract {
 
     publishTallyHash(
       _tallyHash: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "publishTallyHash(string)"(
       _tallyHash: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     recipientRegistry(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1148,31 +1118,24 @@ export class FundingRound extends Contract {
     register(
       arg0: string,
       _data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "register(address,bytes)"(
       arg0: string,
       _data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    renounceOwnership(overrides?: Overrides): Promise<BigNumber>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<BigNumber>;
 
-    setMaci(
-      _maci: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    setMaci(_maci: string, overrides?: Overrides): Promise<BigNumber>;
 
     "setMaci(address)"(
       _maci: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     submitMessageBatch(
@@ -1192,7 +1155,7 @@ export class FundingRound extends Contract {
         ];
       }[],
       _encPubKeys: { x: BigNumberish; y: BigNumberish }[],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "submitMessageBatch(tuple[],tuple[])"(
@@ -1212,7 +1175,7 @@ export class FundingRound extends Contract {
         ];
       }[],
       _encPubKeys: { x: BigNumberish; y: BigNumberish }[],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     tallyHash(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1229,12 +1192,12 @@ export class FundingRound extends Contract {
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     userRegistry(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1245,23 +1208,15 @@ export class FundingRound extends Contract {
 
     "voiceCreditFactor()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    withdrawContribution(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    withdrawContribution(overrides?: Overrides): Promise<BigNumber>;
 
-    "withdrawContribution()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "withdrawContribution()"(overrides?: Overrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    cancel(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    cancel(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "cancel()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    "cancel()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     claimFunds(
       _voteOptionIndex: BigNumberish,
@@ -1271,7 +1226,7 @@ export class FundingRound extends Contract {
       _spent: BigNumberish,
       _spentProof: BigNumberish[][],
       _spentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "claimFunds(uint256,uint256,uint256[][],uint256,uint256,uint256[][],uint256)"(
@@ -1282,19 +1237,19 @@ export class FundingRound extends Contract {
       _spent: BigNumberish,
       _spentProof: BigNumberish[][],
       _spentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     contribute(
       pubKey: { x: BigNumberish; y: BigNumberish },
       amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "contribute((uint256,uint256),uint256)"(
       pubKey: { x: BigNumberish; y: BigNumberish },
       amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     contributorCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1310,13 +1265,13 @@ export class FundingRound extends Contract {
     finalize(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "finalize(uint256,uint256)"(
       _totalSpent: BigNumberish,
       _totalSpentSalt: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     getAllocatedAmount(
@@ -1371,12 +1326,12 @@ export class FundingRound extends Contract {
 
     publishTallyHash(
       _tallyHash: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "publishTallyHash(string)"(
       _tallyHash: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     recipientRegistry(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1388,31 +1343,27 @@ export class FundingRound extends Contract {
     register(
       arg0: string,
       _data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "register(address,bytes)"(
       arg0: string,
       _data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    renounceOwnership(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     setMaci(
       _maci: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setMaci(address)"(
       _maci: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     submitMessageBatch(
@@ -1432,7 +1383,7 @@ export class FundingRound extends Contract {
         ];
       }[],
       _encPubKeys: { x: BigNumberish; y: BigNumberish }[],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "submitMessageBatch(tuple[],tuple[])"(
@@ -1452,7 +1403,7 @@ export class FundingRound extends Contract {
         ];
       }[],
       _encPubKeys: { x: BigNumberish; y: BigNumberish }[],
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     tallyHash(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1469,12 +1420,12 @@ export class FundingRound extends Contract {
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     userRegistry(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1487,12 +1438,10 @@ export class FundingRound extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    withdrawContribution(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    withdrawContribution(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     "withdrawContribution()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };
 }

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useWeb3Context } from "../Web3Provider";
-import { BatchUpdateStateTreeVerifier__factory } from "../../typechain/factories/BatchUpdateStateTreeVerifier__factory";
+import { BatchUpdateStateTreeVerifier32__factory } from "../../typechain/factories/BatchUpdateStateTreeVerifier32__factory";
 
 /**
  * @description ### Returns handler, validator, receipt, and error hooks for FundingFactory AddFundingSource transactions
@@ -23,7 +23,7 @@ export function useDeployBatchUpdateStateTreeVerifier() {
     //If you need to use an UncheckedSigner (which does not populate the from or nonce), the factory cannot compute the contract address.
     const signer = library.getSigner(account);
 
-    const BatchUpdateStateTreeVerifierFactory = new BatchUpdateStateTreeVerifier__factory(signer);
+    const BatchUpdateStateTreeVerifierFactory = new BatchUpdateStateTreeVerifier32__factory(signer);
 
     try {
       if (BatchUpdateStateTreeVerifierFactory == null) throw Error("failed to get BatchUpdateStateTreeVerifierFactory");

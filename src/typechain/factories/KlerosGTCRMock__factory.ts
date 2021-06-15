@@ -2,8 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Signer, Contract, ContractFactory, Overrides } from "ethers";
+import { Signer } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { KlerosGTCRMock } from "../KlerosGTCRMock";
 
@@ -15,7 +16,7 @@ export class KlerosGTCRMock__factory extends ContractFactory {
   deploy(
     _registrationMetaEvidence: string,
     _clearingMetaEvidence: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<KlerosGTCRMock> {
     return super.deploy(
       _registrationMetaEvidence,
@@ -26,7 +27,7 @@ export class KlerosGTCRMock__factory extends ContractFactory {
   getDeployTransaction(
     _registrationMetaEvidence: string,
     _clearingMetaEvidence: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): TransactionRequest {
     return super.getDeployTransaction(
       _registrationMetaEvidence,

@@ -2,14 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import {
-  Signer,
-  BytesLike,
-  Contract,
-  ContractFactory,
-  Overrides,
-} from "ethers";
+import { Signer, BytesLike } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { BrightIdUserRegistry } from "../BrightIdUserRegistry";
 
@@ -21,18 +16,16 @@ export class BrightIdUserRegistry__factory extends ContractFactory {
   deploy(
     _context: BytesLike,
     _verifier: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<BrightIdUserRegistry> {
-    return super.deploy(
-      _context,
-      _verifier,
-      overrides || {}
-    ) as Promise<BrightIdUserRegistry>;
+    return super.deploy(_context, _verifier, overrides || {}) as Promise<
+      BrightIdUserRegistry
+    >;
   }
   getDeployTransaction(
     _context: BytesLike,
     _verifier: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): TransactionRequest {
     return super.getDeployTransaction(_context, _verifier, overrides || {});
   }

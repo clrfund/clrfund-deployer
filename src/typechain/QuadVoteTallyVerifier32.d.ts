@@ -20,25 +20,30 @@ import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface InitialVoiceCreditProxyInterface extends ethers.utils.Interface {
+interface QuadVoteTallyVerifier32Interface extends ethers.utils.Interface {
   functions: {
-    "getVoiceCredits(address,bytes)": FunctionFragment;
+    "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[])": FunctionFragment;
   };
 
   encodeFunctionData(
-    functionFragment: "getVoiceCredits",
-    values: [string, BytesLike]
+    functionFragment: "verifyProof",
+    values: [
+      [BigNumberish, BigNumberish],
+      [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      [BigNumberish, BigNumberish],
+      BigNumberish[]
+    ]
   ): string;
 
   decodeFunctionResult(
-    functionFragment: "getVoiceCredits",
+    functionFragment: "verifyProof",
     data: BytesLike
   ): Result;
 
   events: {};
 }
 
-export class InitialVoiceCreditProxy extends Contract {
+export class QuadVoteTallyVerifier32 extends Contract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -79,74 +84,94 @@ export class InitialVoiceCreditProxy extends Contract {
     toBlock?: string | number | undefined
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
-  interface: InitialVoiceCreditProxyInterface;
+  interface: QuadVoteTallyVerifier32Interface;
 
   functions: {
-    getVoiceCredits(
-      _user: string,
-      _data: BytesLike,
+    verifyProof(
+      a: [BigNumberish, BigNumberish],
+      b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      c: [BigNumberish, BigNumberish],
+      input: BigNumberish[],
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
+    ): Promise<[boolean]>;
 
-    "getVoiceCredits(address,bytes)"(
-      _user: string,
-      _data: BytesLike,
+    "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[])"(
+      a: [BigNumberish, BigNumberish],
+      b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      c: [BigNumberish, BigNumberish],
+      input: BigNumberish[],
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
+    ): Promise<[boolean]>;
   };
 
-  getVoiceCredits(
-    _user: string,
-    _data: BytesLike,
+  verifyProof(
+    a: [BigNumberish, BigNumberish],
+    b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+    c: [BigNumberish, BigNumberish],
+    input: BigNumberish[],
     overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<boolean>;
 
-  "getVoiceCredits(address,bytes)"(
-    _user: string,
-    _data: BytesLike,
+  "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[])"(
+    a: [BigNumberish, BigNumberish],
+    b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+    c: [BigNumberish, BigNumberish],
+    input: BigNumberish[],
     overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<boolean>;
 
   callStatic: {
-    getVoiceCredits(
-      _user: string,
-      _data: BytesLike,
+    verifyProof(
+      a: [BigNumberish, BigNumberish],
+      b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      c: [BigNumberish, BigNumberish],
+      input: BigNumberish[],
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<boolean>;
 
-    "getVoiceCredits(address,bytes)"(
-      _user: string,
-      _data: BytesLike,
+    "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[])"(
+      a: [BigNumberish, BigNumberish],
+      b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      c: [BigNumberish, BigNumberish],
+      input: BigNumberish[],
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<boolean>;
   };
 
   filters: {};
 
   estimateGas: {
-    getVoiceCredits(
-      _user: string,
-      _data: BytesLike,
+    verifyProof(
+      a: [BigNumberish, BigNumberish],
+      b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      c: [BigNumberish, BigNumberish],
+      input: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "getVoiceCredits(address,bytes)"(
-      _user: string,
-      _data: BytesLike,
+    "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[])"(
+      a: [BigNumberish, BigNumberish],
+      b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      c: [BigNumberish, BigNumberish],
+      input: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    getVoiceCredits(
-      _user: string,
-      _data: BytesLike,
+    verifyProof(
+      a: [BigNumberish, BigNumberish],
+      b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      c: [BigNumberish, BigNumberish],
+      input: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "getVoiceCredits(address,bytes)"(
-      _user: string,
-      _data: BytesLike,
+    "verifyProof(uint256[2],uint256[2][2],uint256[2],uint256[])"(
+      a: [BigNumberish, BigNumberish],
+      b: [[BigNumberish, BigNumberish], [BigNumberish, BigNumberish]],
+      c: [BigNumberish, BigNumberish],
+      input: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };

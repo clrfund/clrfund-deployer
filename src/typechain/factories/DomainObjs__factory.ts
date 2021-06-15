@@ -2,8 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Signer, Contract, ContractFactory, Overrides } from "ethers";
+import { Signer } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { DomainObjs } from "../DomainObjs";
 
@@ -37,14 +38,10 @@ export class DomainObjs__factory extends ContractFactory {
     return linkedBytecode;
   }
 
-  deploy(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<DomainObjs> {
+  deploy(overrides?: Overrides): Promise<DomainObjs> {
     return super.deploy(overrides || {}) as Promise<DomainObjs>;
   }
-  getDeployTransaction(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): TransactionRequest {
+  getDeployTransaction(overrides?: Overrides): TransactionRequest {
     return super.getDeployTransaction(overrides || {});
   }
   attach(address: string): DomainObjs {
