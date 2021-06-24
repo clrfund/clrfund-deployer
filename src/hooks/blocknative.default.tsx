@@ -14,24 +14,32 @@ export const initOnboard: (subscriptions: Subscriptions, networkId: number) => O
     walletSelect: {
       wallets: [
         { walletName: "metamask" },
+        {
+          walletName: "walletConnect",
+          rpc: {
+            [networkId]: "https://rpc.xdaichain.com/",
+          },
+          bridge: "https://bridge.walletconnect.org/",
+        },
+        { walletName: "coinbase" },
         { walletName: "fortmatic", apiKey: "pk_test_886ADCAB855632AA" },
         {
           walletName: "trezor",
           appUrl: "http://localhost:3000/",
           email: "aaron@blocknative.com",
-          rpcUrl: "https:mainnet.infura.io/v3/2bd329adaa3e41efaad372f3ed263e11",
+          rpcUrl: "https://rpc.xdaichain.com/",
         },
-        { walletName: "coinbase" },
+
         { walletName: "authereum", disableNotifications: true },
 
         { walletName: "status" },
 
-        { walletName: "trust", rpcUrl: "https:mainnet.infura.io/v3/2bd329adaa3e41efaad372f3ed263e11" },
+        { walletName: "trust", rpcUrl: "https://rpc.xdaichain.com/" },
 
         { walletName: "torus" },
         {
           walletName: "walletLink",
-          rpcUrl: "https:mainnet.infura.io/v3/2bd329adaa3e41efaad372f3ed263e11",
+          rpcUrl: "https://rpc.xdaichain.com/",
           appName: "testdapp",
         },
 
