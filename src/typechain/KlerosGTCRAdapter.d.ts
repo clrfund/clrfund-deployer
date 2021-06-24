@@ -9,11 +9,13 @@ import {
   BigNumber,
   BigNumberish,
   PopulatedTransaction,
+} from "ethers";
+import {
   Contract,
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from "ethers";
+} from "@ethersproject/contracts";
 import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
@@ -134,12 +136,12 @@ export class KlerosGTCRAdapter extends Contract {
   functions: {
     addRecipient(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "addRecipient(bytes32)"(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     controller(overrides?: CallOverrides): Promise<[string]>;
@@ -166,22 +168,22 @@ export class KlerosGTCRAdapter extends Contract {
 
     removeRecipient(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "removeRecipient(bytes32)"(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     setMaxRecipients(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setMaxRecipients(uint256)"(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     tcr(overrides?: CallOverrides): Promise<[string]>;
@@ -191,12 +193,12 @@ export class KlerosGTCRAdapter extends Contract {
 
   addRecipient(
     _tcrItemId: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "addRecipient(bytes32)"(
     _tcrItemId: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   controller(overrides?: CallOverrides): Promise<string>;
@@ -223,22 +225,22 @@ export class KlerosGTCRAdapter extends Contract {
 
   removeRecipient(
     _tcrItemId: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "removeRecipient(bytes32)"(
     _tcrItemId: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   setMaxRecipients(
     _maxRecipients: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setMaxRecipients(uint256)"(
     _maxRecipients: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   tcr(overrides?: CallOverrides): Promise<string>;
@@ -331,12 +333,12 @@ export class KlerosGTCRAdapter extends Contract {
   estimateGas: {
     addRecipient(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "addRecipient(bytes32)"(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     controller(overrides?: CallOverrides): Promise<BigNumber>;
@@ -363,22 +365,22 @@ export class KlerosGTCRAdapter extends Contract {
 
     removeRecipient(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "removeRecipient(bytes32)"(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     setMaxRecipients(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setMaxRecipients(uint256)"(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     tcr(overrides?: CallOverrides): Promise<BigNumber>;
@@ -389,12 +391,12 @@ export class KlerosGTCRAdapter extends Contract {
   populateTransaction: {
     addRecipient(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "addRecipient(bytes32)"(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     controller(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -421,22 +423,22 @@ export class KlerosGTCRAdapter extends Contract {
 
     removeRecipient(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "removeRecipient(bytes32)"(
       _tcrItemId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setMaxRecipients(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setMaxRecipients(uint256)"(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     tcr(overrides?: CallOverrides): Promise<PopulatedTransaction>;

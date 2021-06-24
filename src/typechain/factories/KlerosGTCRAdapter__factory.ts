@@ -2,8 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Signer, Contract, ContractFactory, Overrides } from "ethers";
+import { Signer } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { KlerosGTCRAdapter } from "../KlerosGTCRAdapter";
 
@@ -15,18 +16,16 @@ export class KlerosGTCRAdapter__factory extends ContractFactory {
   deploy(
     _tcr: string,
     _controller: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<KlerosGTCRAdapter> {
-    return super.deploy(
-      _tcr,
-      _controller,
-      overrides || {}
-    ) as Promise<KlerosGTCRAdapter>;
+    return super.deploy(_tcr, _controller, overrides || {}) as Promise<
+      KlerosGTCRAdapter
+    >;
   }
   getDeployTransaction(
     _tcr: string,
     _controller: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): TransactionRequest {
     return super.getDeployTransaction(_tcr, _controller, overrides || {});
   }

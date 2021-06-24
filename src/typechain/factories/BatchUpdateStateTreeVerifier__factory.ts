@@ -2,8 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Signer, Contract, ContractFactory, Overrides } from "ethers";
+import { Signer } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { BatchUpdateStateTreeVerifier } from "../BatchUpdateStateTreeVerifier";
 
@@ -12,16 +13,12 @@ export class BatchUpdateStateTreeVerifier__factory extends ContractFactory {
     super(_abi, _bytecode, signer);
   }
 
-  deploy(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<BatchUpdateStateTreeVerifier> {
-    return super.deploy(
-      overrides || {}
-    ) as Promise<BatchUpdateStateTreeVerifier>;
+  deploy(overrides?: Overrides): Promise<BatchUpdateStateTreeVerifier> {
+    return super.deploy(overrides || {}) as Promise<
+      BatchUpdateStateTreeVerifier
+    >;
   }
-  getDeployTransaction(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): TransactionRequest {
+  getDeployTransaction(overrides?: Overrides): TransactionRequest {
     return super.getDeployTransaction(overrides || {});
   }
   attach(address: string): BatchUpdateStateTreeVerifier {

@@ -9,11 +9,13 @@ import {
   BigNumber,
   BigNumberish,
   PopulatedTransaction,
+} from "ethers";
+import {
   Contract,
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from "ethers";
+} from "@ethersproject/contracts";
 import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
@@ -198,7 +200,7 @@ export class MACIFactory extends Contract {
       _initialVoiceCreditProxy: string,
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "deployMaci(address,address,address,(uint256,uint256))"(
@@ -206,7 +208,7 @@ export class MACIFactory extends Contract {
       _initialVoiceCreditProxy: string,
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     maxValues(
@@ -237,13 +239,9 @@ export class MACIFactory extends Contract {
 
     "qvtVerifier()"(overrides?: CallOverrides): Promise<[string]>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     setMaciParameters(
       _stateTreeDepth: BigNumberish,
@@ -255,7 +253,7 @@ export class MACIFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setMaciParameters(uint8,uint8,uint8,uint8,uint8,address,address,uint256,uint256)"(
@@ -268,7 +266,7 @@ export class MACIFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     signUpDuration(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -277,12 +275,12 @@ export class MACIFactory extends Contract {
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     treeDepths(
@@ -331,7 +329,7 @@ export class MACIFactory extends Contract {
     _initialVoiceCreditProxy: string,
     _coordinator: string,
     _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "deployMaci(address,address,address,(uint256,uint256))"(
@@ -339,7 +337,7 @@ export class MACIFactory extends Contract {
     _initialVoiceCreditProxy: string,
     _coordinator: string,
     _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   maxValues(
@@ -370,13 +368,9 @@ export class MACIFactory extends Contract {
 
   "qvtVerifier()"(overrides?: CallOverrides): Promise<string>;
 
-  renounceOwnership(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "renounceOwnership()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   setMaciParameters(
     _stateTreeDepth: BigNumberish,
@@ -388,7 +382,7 @@ export class MACIFactory extends Contract {
     _qvtVerifier: string,
     _signUpDuration: BigNumberish,
     _votingDuration: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setMaciParameters(uint8,uint8,uint8,uint8,uint8,address,address,uint256,uint256)"(
@@ -401,7 +395,7 @@ export class MACIFactory extends Contract {
     _qvtVerifier: string,
     _signUpDuration: BigNumberish,
     _votingDuration: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   signUpDuration(overrides?: CallOverrides): Promise<BigNumber>;
@@ -410,12 +404,12 @@ export class MACIFactory extends Contract {
 
   transferOwnership(
     newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "transferOwnership(address)"(
     newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   treeDepths(
@@ -600,7 +594,7 @@ export class MACIFactory extends Contract {
       _initialVoiceCreditProxy: string,
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "deployMaci(address,address,address,(uint256,uint256))"(
@@ -608,7 +602,7 @@ export class MACIFactory extends Contract {
       _initialVoiceCreditProxy: string,
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     maxValues(overrides?: CallOverrides): Promise<BigNumber>;
@@ -623,13 +617,9 @@ export class MACIFactory extends Contract {
 
     "qvtVerifier()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    renounceOwnership(overrides?: Overrides): Promise<BigNumber>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<BigNumber>;
 
     setMaciParameters(
       _stateTreeDepth: BigNumberish,
@@ -641,7 +631,7 @@ export class MACIFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setMaciParameters(uint8,uint8,uint8,uint8,uint8,address,address,uint256,uint256)"(
@@ -654,7 +644,7 @@ export class MACIFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     signUpDuration(overrides?: CallOverrides): Promise<BigNumber>;
@@ -663,12 +653,12 @@ export class MACIFactory extends Contract {
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     treeDepths(overrides?: CallOverrides): Promise<BigNumber>;
@@ -696,7 +686,7 @@ export class MACIFactory extends Contract {
       _initialVoiceCreditProxy: string,
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "deployMaci(address,address,address,(uint256,uint256))"(
@@ -704,7 +694,7 @@ export class MACIFactory extends Contract {
       _initialVoiceCreditProxy: string,
       _coordinator: string,
       _coordinatorPubKey: { x: BigNumberish; y: BigNumberish },
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     maxValues(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -719,13 +709,9 @@ export class MACIFactory extends Contract {
 
     "qvtVerifier()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    renounceOwnership(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     setMaciParameters(
       _stateTreeDepth: BigNumberish,
@@ -737,7 +723,7 @@ export class MACIFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setMaciParameters(uint8,uint8,uint8,uint8,uint8,address,address,uint256,uint256)"(
@@ -750,7 +736,7 @@ export class MACIFactory extends Contract {
       _qvtVerifier: string,
       _signUpDuration: BigNumberish,
       _votingDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     signUpDuration(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -761,12 +747,12 @@ export class MACIFactory extends Contract {
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     treeDepths(overrides?: CallOverrides): Promise<PopulatedTransaction>;

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useWeb3Context } from "../Web3Provider";
-import { QuadVoteTallyVerifier__factory } from "../../typechain/factories/QuadVoteTallyVerifier__factory";
+import { QuadVoteTallyVerifier32__factory } from "../../typechain/factories/QuadVoteTallyVerifier32__factory";
 
 /**
  * @description ### Returns handler, validator, receipt, and error hooks for FundingFactory AddFundingSource transactions
@@ -23,7 +23,7 @@ export function useDeployQuadVoteTallyVerifier() {
     //If you need to use an UncheckedSigner (which does not populate the from or nonce), the factory cannot compute the contract address.
     const signer = library.getSigner(account);
 
-    const QuadVoteTallyVerifierFactory = new QuadVoteTallyVerifier__factory(signer);
+    const QuadVoteTallyVerifierFactory = new QuadVoteTallyVerifier32__factory(signer);
 
     try {
       if (QuadVoteTallyVerifierFactory == null) throw Error("failed to get QuadVoteTallyVerifierFactory");

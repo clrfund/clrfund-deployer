@@ -2,8 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Signer, Contract, ContractFactory, Overrides } from "ethers";
+import { Signer } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { ComputeRoot } from "../ComputeRoot";
 
@@ -41,14 +42,10 @@ export class ComputeRoot__factory extends ContractFactory {
     return linkedBytecode;
   }
 
-  deploy(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ComputeRoot> {
+  deploy(overrides?: Overrides): Promise<ComputeRoot> {
     return super.deploy(overrides || {}) as Promise<ComputeRoot>;
   }
-  getDeployTransaction(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): TransactionRequest {
+  getDeployTransaction(overrides?: Overrides): TransactionRequest {
     return super.getDeployTransaction(overrides || {});
   }
   attach(address: string): ComputeRoot {

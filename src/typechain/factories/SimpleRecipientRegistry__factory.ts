@@ -2,8 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Signer, Contract, ContractFactory, Overrides } from "ethers";
+import { Signer } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { SimpleRecipientRegistry } from "../SimpleRecipientRegistry";
 
@@ -14,16 +15,15 @@ export class SimpleRecipientRegistry__factory extends ContractFactory {
 
   deploy(
     _controller: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<SimpleRecipientRegistry> {
-    return super.deploy(
-      _controller,
-      overrides || {}
-    ) as Promise<SimpleRecipientRegistry>;
+    return super.deploy(_controller, overrides || {}) as Promise<
+      SimpleRecipientRegistry
+    >;
   }
   getDeployTransaction(
     _controller: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): TransactionRequest {
     return super.getDeployTransaction(_controller, overrides || {});
   }

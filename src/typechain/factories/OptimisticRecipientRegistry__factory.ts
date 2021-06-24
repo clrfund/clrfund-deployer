@@ -2,14 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import {
-  Signer,
-  BigNumberish,
-  Contract,
-  ContractFactory,
-  Overrides,
-} from "ethers";
+import { Signer, BigNumberish } from "ethers";
 import { Provider, TransactionRequest } from "@ethersproject/providers";
+import { Contract, ContractFactory, Overrides } from "@ethersproject/contracts";
 
 import type { OptimisticRecipientRegistry } from "../OptimisticRecipientRegistry";
 
@@ -22,7 +17,7 @@ export class OptimisticRecipientRegistry__factory extends ContractFactory {
     _baseDeposit: BigNumberish,
     _challengePeriodDuration: BigNumberish,
     _controller: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<OptimisticRecipientRegistry> {
     return super.deploy(
       _baseDeposit,
@@ -35,7 +30,7 @@ export class OptimisticRecipientRegistry__factory extends ContractFactory {
     _baseDeposit: BigNumberish,
     _challengePeriodDuration: BigNumberish,
     _controller: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): TransactionRequest {
     return super.getDeployTransaction(
       _baseDeposit,

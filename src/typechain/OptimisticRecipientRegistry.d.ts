@@ -9,12 +9,14 @@ import {
   BigNumber,
   BigNumberish,
   PopulatedTransaction,
+} from "ethers";
+import {
   Contract,
   ContractTransaction,
   Overrides,
   PayableOverrides,
   CallOverrides,
-} from "ethers";
+} from "@ethersproject/contracts";
 import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
@@ -210,13 +212,13 @@ export class OptimisticRecipientRegistry extends Contract {
     addRecipient(
       _recipient: string,
       _metadata: string,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
     "addRecipient(address,string)"(
       _recipient: string,
       _metadata: string,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
     baseDeposit(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -232,13 +234,13 @@ export class OptimisticRecipientRegistry extends Contract {
     challengeRequest(
       _recipientId: BytesLike,
       _beneficiary: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "challengeRequest(bytes32,address)"(
       _recipientId: BytesLike,
       _beneficiary: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     controller(overrides?: CallOverrides): Promise<[string]>;
@@ -247,12 +249,12 @@ export class OptimisticRecipientRegistry extends Contract {
 
     executeRequest(
       _recipientId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "executeRequest(bytes32)"(
       _recipientId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     getRecipientAddress(
@@ -279,73 +281,69 @@ export class OptimisticRecipientRegistry extends Contract {
 
     removeRecipient(
       _recipientId: BytesLike,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
     "removeRecipient(bytes32)"(
       _recipientId: BytesLike,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     setBaseDeposit(
       _baseDeposit: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setBaseDeposit(uint256)"(
       _baseDeposit: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     setChallengePeriodDuration(
       _challengePeriodDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setChallengePeriodDuration(uint256)"(
       _challengePeriodDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     setMaxRecipients(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "setMaxRecipients(uint256)"(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
 
   addRecipient(
     _recipient: string,
     _metadata: string,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
   "addRecipient(address,string)"(
     _recipient: string,
     _metadata: string,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
   baseDeposit(overrides?: CallOverrides): Promise<BigNumber>;
@@ -359,13 +357,13 @@ export class OptimisticRecipientRegistry extends Contract {
   challengeRequest(
     _recipientId: BytesLike,
     _beneficiary: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "challengeRequest(bytes32,address)"(
     _recipientId: BytesLike,
     _beneficiary: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   controller(overrides?: CallOverrides): Promise<string>;
@@ -374,12 +372,12 @@ export class OptimisticRecipientRegistry extends Contract {
 
   executeRequest(
     _recipientId: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "executeRequest(bytes32)"(
     _recipientId: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   getRecipientAddress(
@@ -406,60 +404,56 @@ export class OptimisticRecipientRegistry extends Contract {
 
   removeRecipient(
     _recipientId: BytesLike,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
   "removeRecipient(bytes32)"(
     _recipientId: BytesLike,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
-  renounceOwnership(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "renounceOwnership()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  "renounceOwnership()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   setBaseDeposit(
     _baseDeposit: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setBaseDeposit(uint256)"(
     _baseDeposit: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   setChallengePeriodDuration(
     _challengePeriodDuration: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setChallengePeriodDuration(uint256)"(
     _challengePeriodDuration: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   setMaxRecipients(
     _maxRecipients: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "setMaxRecipients(uint256)"(
     _maxRecipients: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   transferOwnership(
     newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   "transferOwnership(address)"(
     newOwner: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -634,13 +628,13 @@ export class OptimisticRecipientRegistry extends Contract {
     addRecipient(
       _recipient: string,
       _metadata: string,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
     "addRecipient(address,string)"(
       _recipient: string,
       _metadata: string,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
     baseDeposit(overrides?: CallOverrides): Promise<BigNumber>;
@@ -654,13 +648,13 @@ export class OptimisticRecipientRegistry extends Contract {
     challengeRequest(
       _recipientId: BytesLike,
       _beneficiary: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "challengeRequest(bytes32,address)"(
       _recipientId: BytesLike,
       _beneficiary: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     controller(overrides?: CallOverrides): Promise<BigNumber>;
@@ -669,12 +663,12 @@ export class OptimisticRecipientRegistry extends Contract {
 
     executeRequest(
       _recipientId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "executeRequest(bytes32)"(
       _recipientId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     getRecipientAddress(
@@ -701,60 +695,56 @@ export class OptimisticRecipientRegistry extends Contract {
 
     removeRecipient(
       _recipientId: BytesLike,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
     "removeRecipient(bytes32)"(
       _recipientId: BytesLike,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    renounceOwnership(overrides?: Overrides): Promise<BigNumber>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<BigNumber>;
 
     setBaseDeposit(
       _baseDeposit: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setBaseDeposit(uint256)"(
       _baseDeposit: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     setChallengePeriodDuration(
       _challengePeriodDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setChallengePeriodDuration(uint256)"(
       _challengePeriodDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     setMaxRecipients(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "setMaxRecipients(uint256)"(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<BigNumber>;
   };
 
@@ -762,13 +752,13 @@ export class OptimisticRecipientRegistry extends Contract {
     addRecipient(
       _recipient: string,
       _metadata: string,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
     "addRecipient(address,string)"(
       _recipient: string,
       _metadata: string,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
     baseDeposit(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -786,13 +776,13 @@ export class OptimisticRecipientRegistry extends Contract {
     challengeRequest(
       _recipientId: BytesLike,
       _beneficiary: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "challengeRequest(bytes32,address)"(
       _recipientId: BytesLike,
       _beneficiary: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     controller(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -801,12 +791,12 @@ export class OptimisticRecipientRegistry extends Contract {
 
     executeRequest(
       _recipientId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "executeRequest(bytes32)"(
       _recipientId: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     getRecipientAddress(
@@ -833,60 +823,56 @@ export class OptimisticRecipientRegistry extends Contract {
 
     removeRecipient(
       _recipientId: BytesLike,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
     "removeRecipient(bytes32)"(
       _recipientId: BytesLike,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
-    renounceOwnership(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    renounceOwnership(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    "renounceOwnership()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     setBaseDeposit(
       _baseDeposit: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setBaseDeposit(uint256)"(
       _baseDeposit: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setChallengePeriodDuration(
       _challengePeriodDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setChallengePeriodDuration(uint256)"(
       _challengePeriodDuration: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     setMaxRecipients(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "setMaxRecipients(uint256)"(
       _maxRecipients: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     transferOwnership(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
     "transferOwnership(address)"(
       newOwner: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };
 }
