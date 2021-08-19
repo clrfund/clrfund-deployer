@@ -19,6 +19,11 @@ export const useWeb3 = (networkId: number, dappId?: string, theme: string = "lig
 
   //NOTE: this allows us to start BNC async, then trigger side effects on hasMounted
   const web3Start = async () => {
+    if (window.ethereum) {
+      console.log("Request Metamask Account Data")
+      // Ask User permission to connect to Metamask
+      await window.ethereum.enable();
+    }
     if (!hasMounted) {
       //NOTE: BNC has horrible web3 naming conventions, horrible.
       //DONE: Rename all the things, expose web3 provider, save wallet prefference to local store (only the same of the wallet no user data)
@@ -57,9 +62,9 @@ export const useWeb3 = (networkId: number, dappId?: string, theme: string = "lig
   const web3Connect = async () => {
     if (onboard == null) return;
     const ok = await onboard.walletSelect();
-
+    console.log("Prompt Select Wallet");
     if (library && account && chainId) {
-      console.log("Web3 Set up complete");
+      console.log("Web3 Set up Complete");
       const ok = await onboard.walletCheck();
       return true;
     }

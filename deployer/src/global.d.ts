@@ -45,3 +45,13 @@ declare enum Step {
   CONFIGURE = 3,
   RECIPIENT = 4,
 }
+
+declare global {
+  interface Window {
+      ethereum: Ethereumish;
+  }
+}
+
+export interface Ethereumish {
+  enable(): Promise<any>;
+}
