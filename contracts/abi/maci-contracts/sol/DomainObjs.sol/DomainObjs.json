@@ -1,0 +1,148 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "array",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "hash11",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[5]",
+        "name": "array",
+        "type": "uint256[5]"
+      }
+    ],
+    "name": "hash5",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_left",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_right",
+        "type": "uint256"
+      }
+    ],
+    "name": "hashLeftRight",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "iv",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[10]",
+            "name": "data",
+            "type": "uint256[10]"
+          }
+        ],
+        "internalType": "struct MACISharedObjs.Message",
+        "name": "_message",
+        "type": "tuple"
+      }
+    ],
+    "name": "hashMessage",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "x",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "y",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct MACISharedObjs.PubKey",
+            "name": "pubKey",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint256",
+            "name": "voteOptionTreeRoot",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "voiceCreditBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct DomainObjs.StateLeaf",
+        "name": "_stateLeaf",
+        "type": "tuple"
+      }
+    ],
+    "name": "hashStateLeaf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  }
+]
