@@ -451,7 +451,7 @@ export const ConfigureDapp = () => {
             </TabList>
           </FlexBox>
           <Box flexGrow={1}>
-          {" "}
+            {" "}
             <LoginArea />
           </Box>
         </Flex>

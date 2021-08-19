@@ -19,7 +19,6 @@ export const useWeb3 = (networkId: number, dappId?: string, theme: string = "lig
 
   //NOTE: this allows us to start BNC async, then trigger side effects on hasMounted
   const web3Start = async () => {
-    
     if (!hasMounted) {
       //NOTE: BNC has horrible web3 naming conventions, horrible.
       //DONE: Rename all the things, expose web3 provider, save wallet prefference to local store (only the same of the wallet no user data)
@@ -43,7 +42,6 @@ export const useWeb3 = (networkId: number, dappId?: string, theme: string = "lig
                 setLibrary(null);
                 setWallet("null");
               }
-              
             },
           },
           networkId
@@ -53,21 +51,19 @@ export const useWeb3 = (networkId: number, dappId?: string, theme: string = "lig
 
       setHasMounted(true);
     } else {
-      
     }
   };
   // NOTE: Expose magic, checks if ready to transact otherwise prompts user
   const web3Connect = async () => {
-    
     if (onboard == null) return;
     const ok = await onboard.walletSelect();
-   
+
     if (library && account && chainId) {
       console.log("Web3 Set up complete");
       const ok = await onboard.walletCheck();
-  
+      return true;
     }
-    
+    return false;
   };
 
   //NOTE: Disconnect from wallet

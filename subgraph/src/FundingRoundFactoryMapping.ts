@@ -1,4 +1,4 @@
-import { Address, BigInt, log } from "@graphprotocol/graph-ts";
+import { BigInt, log } from "@graphprotocol/graph-ts";
 import {
   CoordinatorChanged,
   FundingSourceAdded,
@@ -7,10 +7,9 @@ import {
   RoundFinalized,
   RoundStarted,
   TokenChanged,
-  FundingRoundFactory as FundingRoundFactoryContract
+  FundingRoundFactory as FundingRoundFactoryContract,
 } from "../generated/FundingRoundFactory/FundingRoundFactory";
 
-import { BrightIdUserRegistry as BrightIdUserRegistryContract } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
 import { MACIFactory as MACIFactoryContract } from "../generated/FundingRoundFactory/MACIFactory";
 import { FundingRound as FundingRoundContract } from "../generated/FundingRoundFactory/FundingRound";
 
@@ -20,20 +19,9 @@ import { BrightIdUserRegistry as UserRegistryContract } from "../generated/Brigh
 import {
   FundingRound as FundingRoundTemplate,
   OptimisticRecipientRegistry as recipientRegistryTemplate,
-  BrightIdUserRegistry as contributorRegistryTemplate
+  BrightIdUserRegistry as contributorRegistryTemplate,
 } from "../generated/templates";
-import {
-  FundingRoundFactory,
-  FundingRound,
-  RecipientRegistry,
-  Recipient,
-  ContributorRegistry,
-  Contributor,
-  Coordinator,
-  Contribution as FundingRoundContribution,
-  Donation,
-  Token
-} from "../generated/schema";
+import { FundingRoundFactory, FundingRound, RecipientRegistry, ContributorRegistry } from "../generated/schema";
 
 export function handleCoordinatorChanged(event: CoordinatorChanged): void {
   log.info("handleCoordinatorChanged", []);
@@ -53,9 +41,7 @@ export function handleOwnershipTransferred(event: OwnershipTransferred): void {
 
 export function handleRoundFinalized(event: RoundFinalized): void {
   log.info("handleRoundFinalized", []);
-  let fundingRoundFactoryContract = FundingRoundFactoryContract.bind(
-    event.address
-  );
+  let fundingRoundFactoryContract = FundingRoundFactoryContract.bind(event.address);
   let fundingRoundAddress = fundingRoundFactoryContract.getCurrentRound();
 
   let fundingRoundContract = FundingRoundContract.bind(fundingRoundAddress);
@@ -88,9 +74,7 @@ export function handleRoundStarted(event: RoundStarted): void {
 
   FundingRoundTemplate.create(event.params._round);
 
-  let fundingRoundFactoryContract = FundingRoundFactoryContract.bind(
-    event.params._round
-  );
+  let fundingRoundFactoryContract = FundingRoundFactoryContract.bind(event.params._round);
   let fundingRoundAddress = fundingRoundFactoryContract.getCurrentRound();
 
   let fundingRoundContract = FundingRoundContract.bind(fundingRoundAddress);
@@ -124,9 +108,7 @@ export function handleRoundStarted(event: RoundStarted): void {
   //NOTE: If the contracts aren't being tracked initialize them
   if (recipientRegistry == null) {
     recipientRegistryTemplate.create(recipientRegistryAddress);
-    let recipientRegistryContract = RecipientRegistryContract.bind(
-      recipientRegistryAddress
-    );
+    let recipientRegistryContract = RecipientRegistryContract.bind(recipientRegistryAddress);
     let baseDeposit = recipientRegistryContract.baseDeposit();
     let challengePeriodDuration = recipientRegistryContract.challengePeriodDuration();
     let controller = recipientRegistryContract.controller();
@@ -142,15 +124,12 @@ export function handleRoundStarted(event: RoundStarted): void {
     recipientRegistry.owner = owner;
     recipientRegistry.fundingRoundFactory = fundingRoundFactoryId;
     recipientRegistry.save();
-    
   }
 
   if (contributorRegistry == null) {
     contributorRegistryTemplate.create(contributorRegistryAddress);
 
-    let contributorRegistryContract = UserRegistryContract.bind(
-      contributorRegistryAddress
-    );
+    let contributorRegistryContract = UserRegistryContract.bind(contributorRegistryAddress);
 
     let context = contributorRegistryContract.context();
     let owner = contributorRegistryContract.owner();
@@ -163,7 +142,6 @@ export function handleRoundStarted(event: RoundStarted): void {
     contributorRegistry.fundingRoundFactory = fundingRoundFactoryId;
     contributorRegistry.save();
   }
- 
 
   let maciFactoryAddress = fundingRoundFactoryContract.maciFactory();
   let maciFactoryContract = MACIFactoryContract.bind(maciFactoryAddress);
@@ -201,18 +179,18 @@ export function handleRoundStarted(event: RoundStarted): void {
   fundingRoundFactory.maxMessages = maxMessages;
   fundingRoundFactory.maxVoteOptions = maxVoteOptions;
   fundingRoundFactory.currentRound = fundingRoundId;
-  
+
   fundingRoundFactory.save();
 
-   //NOTE: Set the registries for the round
-   fundingRound.contributorRegistry = contributorRegistryId;
-   fundingRound.recipientRegistry = recipientRegistryId;
-   fundingRound.contributorRegistryAddress = contributorRegistryAddress;
-   fundingRound.recipientRegistryAddress = recipientRegistryAddress;
-   fundingRound.startTime = event.block.timestamp;
-   fundingRound.signUpDeadline = event.block.timestamp.plus(signUpDuration)
-   fundingRound.votingDeadline = event.block.timestamp.plus(signUpDuration).plus(votingDuration)
-   fundingRound.save();
+  //NOTE: Set the registries for the round
+  fundingRound.contributorRegistry = contributorRegistryId;
+  fundingRound.recipientRegistry = recipientRegistryId;
+  fundingRound.contributorRegistryAddress = contributorRegistryAddress;
+  fundingRound.recipientRegistryAddress = recipientRegistryAddress;
+  fundingRound.startTime = event.block.timestamp;
+  fundingRound.signUpDeadline = event.block.timestamp.plus(signUpDuration);
+  fundingRound.votingDeadline = event.block.timestamp.plus(signUpDuration).plus(votingDuration);
+  fundingRound.save();
 }
 
 export function handleTokenChanged(event: TokenChanged): void {

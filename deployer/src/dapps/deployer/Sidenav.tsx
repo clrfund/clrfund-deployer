@@ -154,7 +154,6 @@ export const Sidenav = () => {
               RecipientRegistry={RecipientRegistry}
               UserRegistry={UserRegistry}
             />
-            
           </SimpleGrid>
         </HStack>
       </VStack>

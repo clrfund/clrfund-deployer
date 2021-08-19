@@ -7,21 +7,16 @@ import {
   OwnershipTransferred,
   TallyPublished,
   RegisterCall,
-  FundingRound as FundingRoundContract
+  FundingRound as FundingRoundContract,
 } from "../generated/FundingRoundFactory/FundingRound";
 import { OptimisticRecipientRegistry as RecipientRegistryContract } from "../generated/OptimisticRecipientRegistry/OptimisticRecipientRegistry";
 
 import {
-  FundingRoundFactory,
-  RecipientRegistry,
   Recipient,
-  ContributorRegistry,
   Contributor,
-  Coordinator,
   Contribution as FundingRoundContribution,
   Donation,
-  Token,
-  FundingRound
+  FundingRound,
 } from "../generated/schema";
 // The following functions can then be called on this contract to access
 // state variables and other data:
@@ -60,17 +55,13 @@ export function handleContribution(event: Contribution): void {
   let contributorRegistryAddress = fundingRoundContract.userRegistry();
   let contributorRegistryId = contributorRegistryAddress.toHexString();
 
-  let brightIdUserRegistryContract = BrightIdUserRegistryContract.bind(
-    contributorRegistryAddress
-  );
+  let brightIdUserRegistryContract = BrightIdUserRegistryContract.bind(contributorRegistryAddress);
 
   //DONE: Retroactively register here as there are no events emitted in registration function
   let contributorAddress = event.params._sender;
   let contributorId = contributorAddress.toHexString();
   let contributor = Contributor.load(contributorId);
-  let contributionId = fundingRoundId
-    .concat("-contribution-")
-    .concat(contributorId);
+  let contributionId = fundingRoundId.concat("-contribution-").concat(contributorId);
 
   //NOTE: If the contracts aren't being tracked initialize them
   if (contributor == null) {
@@ -78,14 +69,11 @@ export function handleContribution(event: Contribution): void {
 
     let _fundingRounds = [fundingRoundId] as string[];
     contributor.fundingRounds = _fundingRounds;
-    
 
     contributor.contributorRegistry = contributorRegistryId;
     contributor.verified = true;
     contributor.contributorAddress = contributorAddress;
-    contributor.verifiedTimeStamp = brightIdUserRegistryContract
-      .verifications(contributorAddress)
-      .value0.toString();
+    contributor.verifiedTimeStamp = brightIdUserRegistryContract.verifications(contributorAddress).value0.toString();
 
     contributor.save();
   } else {
@@ -101,9 +89,7 @@ export function handleContribution(event: Contribution): void {
     contributor.contributorRegistry = contributorRegistryId;
     contributor.verified = true;
     contributor.contributorAddress = contributorAddress;
-    contributor.verifiedTimeStamp = brightIdUserRegistryContract
-      .verifications(contributorAddress)
-      .value0.toString();
+    contributor.verifiedTimeStamp = brightIdUserRegistryContract.verifications(contributorAddress).value0.toString();
 
     contributor.save();
   }
@@ -117,24 +103,18 @@ export function handleContribution(event: Contribution): void {
   contribution.createdAt = timestamp;
 
   //NOTE: Update Funding Round
-  fundingRound.contributorCount = fundingRound.contributorCount.plus(
-    BigInt.fromI32(1)
-  );
+  fundingRound.contributorCount = fundingRound.contributorCount.plus(BigInt.fromI32(1));
   fundingRound.lastUpdatedAt = timestamp;
 
   contribution.save();
   fundingRound.save();
 }
 
-export function handleContributionWithdrawn(
-  event: ContributionWithdrawn
-): void {
+export function handleContributionWithdrawn(event: ContributionWithdrawn): void {
   log.info("handleContributionWithdrawn", []);
   let fundingRoundId = event.address.toHexString();
   let contributorId = event.params._contributor.toHexString();
-  let contributionId = fundingRoundId
-    .concat("-contribution-")
-    .concat(contributorId);
+  let contributionId = fundingRoundId.concat("-contribution-").concat(contributorId);
   let timestamp = event.block.timestamp.toString();
 
   store.remove("Contribution", contributionId);
@@ -144,9 +124,7 @@ export function handleContributionWithdrawn(
     log.error("Error: handleContributionWithdrawn failed", []);
     return;
   }
-  fundingRound.contributorCount = fundingRound.contributorCount.minus(
-    BigInt.fromI32(1)
-  );
+  fundingRound.contributorCount = fundingRound.contributorCount.minus(BigInt.fromI32(1));
   fundingRound.lastUpdatedAt = timestamp;
 }
 
@@ -167,9 +145,7 @@ export function handleFundsClaimed(event: FundsClaimed): void {
   let recipientRegistryAddress = fundingRoundContract.recipientRegistry();
   let recipientRegistryId = recipientRegistryAddress.toHexString();
 
-  let recipientRegistryContract = RecipientRegistryContract.bind(
-    recipientRegistryAddress
-  );
+  let recipientRegistryContract = RecipientRegistryContract.bind(recipientRegistryAddress);
 
   //DONE: Retroactively register here as there are no events emitted in registration function
   let recipientAddress = event.params._recipient;
@@ -180,10 +156,10 @@ export function handleFundsClaimed(event: FundsClaimed): void {
   //NOTE: If the contracts aren't being tracked initialize them
   if (recipient == null) {
     let recipient = new Recipient(recipientId);
-    
+
     let _fundingRounds = [fundingRoundId] as string[];
     recipient.fundingRounds = _fundingRounds;
-    
+
     recipient.recipientRegistry = recipientRegistryId;
     recipient.verified = true;
     recipient.voteOptionIndex = event.params._voteOptionIndex;
@@ -215,9 +191,7 @@ export function handleFundsClaimed(event: FundsClaimed): void {
   donation.voteOptionIndex = event.params._voteOptionIndex;
   donation.createdAt = timestamp;
 
-  fundingRound.recipientCount = fundingRound.recipientCount.plus(
-    BigInt.fromI32(1)
-  );
+  fundingRound.recipientCount = fundingRound.recipientCount.plus(BigInt.fromI32(1));
   fundingRound.lastUpdatedAt = timestamp;
 
   donation.save();

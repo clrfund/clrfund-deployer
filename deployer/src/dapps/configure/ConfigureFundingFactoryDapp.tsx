@@ -155,12 +155,11 @@ export const ConfigureFundingFactoryDapp = () => {
                   }}>
                   Coordinator Quit
                 </Tab>
-                
               </VStack>
             </TabList>
           </FlexBox>
           <Box flexGrow={1}>
-          {" "}
+            {" "}
             <LoginArea />
           </Box>
         </Flex>
@@ -207,7 +206,6 @@ const LoginArea = () => {
           <TabPanel>
             <CoordinatorQuitForm />
           </TabPanel>
-          
         </TabPanels>
       </Box>
     </Flex>

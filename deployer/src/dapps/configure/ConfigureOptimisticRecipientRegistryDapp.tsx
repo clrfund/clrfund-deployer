@@ -20,7 +20,7 @@ import RemoveRecipientForm from "../../components/OptimisticRecipientRegistry/re
 import SetBaseDepositForm from "../../components/OptimisticRecipientRegistry/setBaseDeposit";
 import SetChallengePeriodDurationForm from "../../components/OptimisticRecipientRegistry/setChallengePeriodDuration";
 import SetMaxRecipientsForm from "../../components/OptimisticRecipientRegistry/setMaxRecipients";
-import  RenounceOwnershipForm  from "../../components/OptimisticRecipientRegistry/renounceOwnership";
+import RenounceOwnershipForm from "../../components/OptimisticRecipientRegistry/renounceOwnership";
 
 const FlexBox = ({ children, flexGrow = 1, alignItems = "center", justifyContent = "center", ...rest }) => {
   return (
@@ -42,7 +42,6 @@ export const ConfigureOptimisticRecipientRegistryDapp = () => {
             flexShrink={0}>
             <TabList mt="30px" border="none">
               <VStack alignItems="start" spacing={-3} fontFamily="Helvetica" letterSpacing="-0.6px" color="gray.400">
-               
                 <Button
                   sx={{
                     fontSize: "14px",
@@ -136,12 +135,11 @@ export const ConfigureOptimisticRecipientRegistryDapp = () => {
                   }}>
                   Transfer Ownership
                 </Tab>
-                
               </VStack>
             </TabList>
           </FlexBox>
           <Box flexGrow={1}>
-          {" "}
+            {" "}
             <LoginArea />
           </Box>
         </Flex>
@@ -155,7 +153,6 @@ const LoginArea = () => {
     <Flex align="center" justifyContent="flex-start">
       <Box p={4}>
         <TabPanels>
-          
           <TabPanel>
             <AddRecipientForm />
           </TabPanel>
@@ -180,7 +177,6 @@ const LoginArea = () => {
           <TabPanel>
             <SetMaxRecipientsForm />
           </TabPanel>
-          
         </TabPanels>
       </Box>
     </Flex>

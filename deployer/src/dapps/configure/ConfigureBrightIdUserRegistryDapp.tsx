@@ -39,7 +39,6 @@ export const ConfigureBrightIdUserRegistryDapp = () => {
             flexShrink={0}>
             <TabList mt="30px" border="none">
               <VStack alignItems="start" spacing={-3} fontFamily="Helvetica" letterSpacing="-0.6px" color="gray.400">
-               
                 <Button
                   sx={{
                     fontSize: "14px",
@@ -101,7 +100,6 @@ export const ConfigureBrightIdUserRegistryDapp = () => {
             </TabList>
           </FlexBox>
           <Box flexGrow={1}>
-      
             <LoginArea />
           </Box>
         </Flex>
@@ -115,8 +113,6 @@ const LoginArea = () => {
     <Flex align="center" justifyContent="flex-start">
       <Box p={4}>
         <TabPanels>
-         
-
           <TabPanel>
             <RegisterForm />
           </TabPanel>

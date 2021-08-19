@@ -5,16 +5,12 @@ import { Homepage } from "./Homepage";
 import { Dapp } from "./Dapp";
 
 export const App = () => {
-  
-
   return (
     <Switch>
       <Route exact path="/">
         <Homepage />
       </Route>
       <Route path="/dashboard/">
-       
-        
         <Dapp />
       </Route>
       <Route path="*" component={ErrorPage} />

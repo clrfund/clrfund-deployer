@@ -60,6 +60,6 @@ export const Web3Provider = ({ networkId, dappId, theme, children }: Web3Provide
   );
 };
 
- export  const useWeb3Context = () => useContext(Web3Context);
+export const useWeb3Context = () => useContext(Web3Context);
 
 export default Web3Provider;

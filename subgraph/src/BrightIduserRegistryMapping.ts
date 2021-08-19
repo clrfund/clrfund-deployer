@@ -1,4 +1,4 @@
-import { BigInt, log } from "@graphprotocol/graph-ts";
+import { log } from "@graphprotocol/graph-ts";
 import {
   OwnershipTransferred,
   SetBrightIdSettings,
@@ -6,28 +6,8 @@ import {
 } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
 
 import { BrightIdUserRegistry as BrightIdUserRegistryContract } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
-import {
-  Contribution,
-  ContributionWithdrawn,
-  FundsClaimed,
-  TallyPublished,
-  RegisterCall,
-  FundingRound as FundingRoundContract,
-} from "../generated/FundingRoundFactory/FundingRound";
-import { OptimisticRecipientRegistry } from "../generated/OptimisticRecipientRegistry/OptimisticRecipientRegistry";
 
-import {
-  FundingRoundFactory,
-  FundingRound,
-  RecipientRegistry,
-  Recipient,
-  ContributorRegistry,
-  Contributor,
-  Coordinator,
-  Contribution as FundingRoundContribution,
-  Donation,
-  Token,
-} from "../generated/schema";
+import { Contributor } from "../generated/schema";
 
 // It is also possible to access smart contracts from mappings. For
 // example, the contract that has emitted the event can be connected to

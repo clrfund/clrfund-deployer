@@ -1,15 +1,5 @@
 import * as React from "react";
-import {
-  Flex,
-  Box,
-  VStack,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Flex, Box, VStack, Tabs, TabList, Tab, TabPanels, TabPanel, useBreakpointValue } from "@chakra-ui/react";
 
 import { useWeb3Context } from "../../hooks/Web3Provider";
 
@@ -18,21 +8,9 @@ import DeploySimpleRecipientRegistryForm from "../../components/Deployers/Deploy
 import DeployKlerosGTCRMockForm from "../../components/Deployers/DeployKlerosGTCRAdapter";
 import DeployKlerosGTCRAdapterForm from "../../components/Deployers/DeployKlerosGTCRAdapter";
 
-const FlexBox = ({
-  children,
-  flexGrow = 1,
-  alignItems = "center",
-  justifyContent = "center",
-  ...rest
-}) => {
+const FlexBox = ({ children, flexGrow = 1, alignItems = "center", justifyContent = "center", ...rest }) => {
   return (
-    <Box
-      display="flex"
-      flexGrow={flexGrow}
-      alignItems={alignItems}
-      justifyContent={justifyContent}
-      {...rest}
-    >
+    <Box display="flex" flexGrow={flexGrow} alignItems={alignItems} justifyContent={justifyContent} {...rest}>
       {children}
     </Box>
   );
@@ -47,16 +25,9 @@ export const Dapp = () => {
             hidden={useBreakpointValue({ base: true, md: true, lg: false })}
             alignItems="top"
             justifyContent="left"
-            flexShrink={0}
-          >
+            flexShrink={0}>
             <TabList mt="30px" border="none">
-              <VStack
-                alignItems="start"
-                spacing={-3}
-                fontFamily="Helvetica"
-                letterSpacing="-0.6px"
-                color="gray.400"
-              >
+              <VStack alignItems="start" spacing={-3} fontFamily="Helvetica" letterSpacing="-0.6px" color="gray.400">
                 <Tab
                   sx={{
                     fontSize: "14px",
@@ -67,8 +38,7 @@ export const Dapp = () => {
                       fontSize: "14px",
                       fontWeight: "bold",
                     },
-                  }}
-                >
+                  }}>
                   Deploy Optimistic Recipient Registry
                 </Tab>
 
@@ -82,8 +52,7 @@ export const Dapp = () => {
                       fontSize: "14px",
                       fontWeight: "bold",
                     },
-                  }}
-                >
+                  }}>
                   Deploy Simple Recipient Registry
                 </Tab>
                 <Tab
@@ -96,8 +65,7 @@ export const Dapp = () => {
                       fontSize: "14px",
                       fontWeight: "bold",
                     },
-                  }}
-                >
+                  }}>
                   Deploy Kleros GTCR Mock
                 </Tab>
                 <Tab
@@ -110,8 +78,7 @@ export const Dapp = () => {
                       fontSize: "14px",
                       fontWeight: "bold",
                     },
-                  }}
-                >
+                  }}>
                   Deploy Kleros GTCR Adapter
                 </Tab>
               </VStack>

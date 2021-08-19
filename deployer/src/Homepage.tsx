@@ -36,7 +36,6 @@ const Section = () => {
             <Box width={["100%", "80%", "70%", "60%"]}>
               <Flex flexDirection="column">
                 <Box>
-                  
                   <Text
                     fontFamily="heading"
                     color="text.500"
@@ -63,7 +62,7 @@ const Section = () => {
                 </Box>
                 <Box margin="0px -8px -20px -8px" marginTop="45px">
                   <Button
-                  as={RouterLink}
+                    as={RouterLink}
                     margin="0px 8px 20px 8px"
                     width="250px"
                     height="60px"

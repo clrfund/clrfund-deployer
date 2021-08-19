@@ -51,7 +51,7 @@ export default function Section2() {
       </Box>
       <Box px={8} py={8} mx="100px" bg={useColorModeValue("white", "gray.800")} shadow="xl">
         <SimpleGrid
-          columns={{ base: 1, sm: 1, md: 2, lg: 3 ,xl:4}}
+          columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
           spacingX={{ base: 16, lg: 24 }}
           spacingY={20}
           my={6}
@@ -108,7 +108,6 @@ export default function Section2() {
             The clr.fund deployer takes care of all the heavy lifting
           </Feature>
 
-          
           <Feature
             color="purple"
             title="Flexible"
@@ -145,8 +144,6 @@ export default function Section2() {
             }>
             DIY or get expert assistance
           </Feature>
-
-          
 
           <Feature
             color="purple"

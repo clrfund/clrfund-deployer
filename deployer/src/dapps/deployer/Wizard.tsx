@@ -104,8 +104,9 @@ export const DeployWizard = () => {
           loadingTitle: "Set MACI Params",
           loadingPercent: 5,
           loadingStatus: "Select QF Version",
-          loadingDetail:"Do not close this tab. This website uses session storage to save your progress as we deploy, closing the tab will cause you to lose your progress",
-              
+          loadingDetail:
+            "Do not close this tab. This website uses session storage to save your progress as we deploy, closing the tab will cause you to lose your progress",
+
           loading: false,
         });
         return;
@@ -214,11 +215,10 @@ export const DeployWizard = () => {
                 loadingTitle: "Minimal Anti Collusion Infrastructure",
                 loadingPercent: 15,
                 loadingStatus: "Confirm MACI Deploy",
-                
+
                 loading: false,
               });
             } else {
-             
               toast({
                 title: "All parameters are required",
                 description: "Missing Parameters",
@@ -232,8 +232,9 @@ export const DeployWizard = () => {
           loadingTitle: "Set Quadratic Funding Round Params",
           loadingPercent: 60,
           loadingStatus: "Configure Parameters",
-          loadingDetail:"Do not close this tab. This website uses session storage to save your progress as we deploy, closing the tab will cause you to lose your progress",
-              
+          loadingDetail:
+            "Do not close this tab. This website uses session storage to save your progress as we deploy, closing the tab will cause you to lose your progress",
+
           loadingButtonLeft: "Back",
           loadingButtonRight: "Continue",
         });
@@ -250,7 +251,9 @@ export const DeployWizard = () => {
               loadingPercent: 60,
               loadingStatus: "Pending transaction confirmation",
               loading: true,
-              loadingButtonRightOnClick: async () => {return}
+              loadingButtonRightOnClick: async () => {
+                return;
+              },
             });
 
             if (handleDeployMACIFactory.deploy == null) throw e5 ? e5 : handleDeployMACIFactory.error;
@@ -306,7 +309,8 @@ export const DeployWizard = () => {
               loadingTitle: "Deploying Bright ID User Registry",
               loadingPercent: 75,
               loadingStatus: "Pending transaction confirmation",
-              loadingDetail: "BrightID User registry being deployed with the following parameters: network: xDai, context: clr.fund , verifier:0xb1d7...F6DB. You may deploy and configure your own versions of this contract from the deploy menu.",
+              loadingDetail:
+                "BrightID User registry being deployed with the following parameters: network: xDai, context: clr.fund , verifier:0xb1d7...F6DB. You may deploy and configure your own versions of this contract from the deploy menu.",
               loading: true,
             });
 
@@ -317,7 +321,7 @@ export const DeployWizard = () => {
               "0xb1d71F62bEe34E9Fc349234C201090c33BCdF6DB"
             );
             const recieptBrightIdUserRegistry = await BrightIdUserRegistryContract.deployTransaction.wait(1);
-            
+
             actions.updateState({
               contractsDeployed: "6",
               loadingButtonLeft: "Cancel",
@@ -328,8 +332,10 @@ export const DeployWizard = () => {
               loadingStatus: "Register on Funding Round Factory Contract",
               loading: true,
             });
-            const setUserRegistryTx = await FundingRoundFactoryContract.setUserRegistry(recieptBrightIdUserRegistry.contractAddress)
-            
+            const setUserRegistryTx = await FundingRoundFactoryContract.setUserRegistry(
+              recieptBrightIdUserRegistry.contractAddress
+            );
+
             actions.updateState({
               UserRegistry: recieptBrightIdUserRegistry.contractAddress,
               contractsDeployed: "7",
@@ -339,8 +345,9 @@ export const DeployWizard = () => {
               loadingTitle: "Deploying Optimistic Recipient Registry",
               loadingPercent: 78,
               loadingStatus: "Pending transaction confirmation",
-              loadingDetail: "Optimistic Recipient registry being deployed with the following parameters: initialBaseDeposit: 0, initialChallengePeriodDuration: 1 week. You may deploy and configure your own versions of this contract from the deploy menu.",
-              
+              loadingDetail:
+                "Optimistic Recipient registry being deployed with the following parameters: initialBaseDeposit: 0, initialChallengePeriodDuration: 1 week. You may deploy and configure your own versions of this contract from the deploy menu.",
+
               loading: false,
             });
             if (handleDeployOptimisticRecipientRegistry.deploy == null)
@@ -365,10 +372,13 @@ export const DeployWizard = () => {
               loadingTitle: "Register Optimistic Recipient Registry ",
               loadingPercent: 76,
               loadingStatus: "Register on Funding Round Factory Contract",
-              loadingDetail:"Do not close this tab. This website uses session storage to save your progress as we deploy, closing the tab will cause you to lose your progress",
+              loadingDetail:
+                "Do not close this tab. This website uses session storage to save your progress as we deploy, closing the tab will cause you to lose your progress",
               loading: true,
             });
-            const  setRecipientRegistryTx = await FundingRoundFactoryContract.setRecipientRegistry(recieptOptimisticRecipientRegistry.contractAddress)
+            const setRecipientRegistryTx = await FundingRoundFactoryContract.setRecipientRegistry(
+              recieptOptimisticRecipientRegistry.contractAddress
+            );
             actions.updateState({
               contractsDeployed: "8",
               loadingButtonLeft: "Cancel",
@@ -448,8 +458,9 @@ export const DeployWizard = () => {
           loadingTitle: "Minimal Anti Collusion Infrastructure",
           loadingPercent: 15,
           loadingStatus: "Confirm MACI Deploy",
-          loadingDetail:"Do not close this tab. This website uses session storage to save your progress as we deploy, closing the tab will cause you to lose your progress",
-              
+          loadingDetail:
+            "Do not close this tab. This website uses session storage to save your progress as we deploy, closing the tab will cause you to lose your progress",
+
           loading: false,
         });
         return;
@@ -581,7 +592,9 @@ export const DeployWizard = () => {
           caption="GUI Deployer unavailable. Contact support to be added to subgraph and generate a GUI">
           <Button
             alignSelf="flex-end"
-            onClick={() => {actions.updateStep({ step: Step.START });}}
+            onClick={() => {
+              actions.updateStep({ step: Step.START });
+            }}
             size="lg"
             leftIcon={<FaGithub />}
             isLoading={false}

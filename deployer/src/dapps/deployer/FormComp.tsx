@@ -2,7 +2,6 @@ import React from "react";
 import {
   chakra,
   Box,
-  Flex,
   useColorModeValue,
   SimpleGrid,
   GridItem,
@@ -13,25 +12,14 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputLeftAddon,
   FormHelperText,
-  Textarea,
-  Avatar,
-  Icon,
   Button,
-  VisuallyHidden,
-  Select,
-  Checkbox,
-  RadioGroup,
-  Radio,
   InputRightAddon,
 } from "@chakra-ui/react";
-import { FaUser } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useStateMachine } from "little-state-machine";
-import { updateState, updateStep, Step } from "../../Dapp";
+import { updateState, updateStep } from "../../Dapp";
 import { RegisterHelper } from "../../components/Web3Form";
-
 
 const registerAddress: RegisterHelper = {
   required: "This field is required",
@@ -148,7 +136,6 @@ const Step2 = () => {
       coordinatorAddress: data.coordinatorAddress,
       coordinatorPubKey: data.coordinatorPubKey,
     });
-    
   };
   return (
     <chakra.form onSubmit={handleSubmit(onSubmit)} shadow="base" rounded={[null, "md"]} overflow={{ sm: "hidden" }}>
@@ -206,7 +193,6 @@ const Step3 = () => {
       signupDuration: data.signupDuration,
       votingDuration: data.votingDuration,
     });
-    
   };
   return (
     <chakra.form onSubmit={handleSubmit(onSubmit)} shadow="base" rounded={[null, "md"]} overflow={{ sm: "hidden" }}>

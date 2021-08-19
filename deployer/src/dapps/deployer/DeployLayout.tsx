@@ -15,11 +15,10 @@ export const WizardLayout = ({ children }) => {
         pt={5}
         px={{ base: 2 }}
         mx="80px"
-        hidden={useBreakpointValue({ base: true, md: false, lg: false })}
-      >
+        hidden={useBreakpointValue({ base: true, md: false, lg: false })}>
         <SimpleGrid columns={5} spacing={{ base: 2 }} minChildWidth="250px">
           <Sidenav />
-          <Container >{children}</Container>
+          <Container>{children}</Container>
         </SimpleGrid>
       </Box>
       <Footer />
@@ -36,11 +35,9 @@ export const DeployLayout = ({ children }) => {
         pt={5}
         px={{ base: 2 }}
         mx="80px"
-        hidden={useBreakpointValue({ base: true, md: false, lg: false })}
-      >
+        hidden={useBreakpointValue({ base: true, md: false, lg: false })}>
         <SimpleGrid columns={5} spacing={{ base: 2 }} minChildWidth="250px">
-         
-          <Container >{children}</Container>
+          <Container>{children}</Container>
         </SimpleGrid>
       </Box>
       <Footer />

@@ -34,7 +34,7 @@ createStore({
     loadingButtonRight: "Continue with Default",
     loadingButtonRightOnClick: () => {},
     step: Step.START,
-    contractsDeployed:"0",
+    contractsDeployed: "0",
     txHash: "",
     stateTreeDepth: 0,
     messageTreeDepth: 0,
@@ -73,13 +73,13 @@ export function updateState(
     loadingButtonRight?: string;
     loadingButtonRightOnClick?: any;
     step?: Step;
-    contractsDeployed?:string,
+    contractsDeployed?: string;
     txHash?: string;
-    stateTreeDepth?: number,
-    messageTreeDepth?: number,
-    voteOptionTreeDepth?: number,
-    tallyBatchSize?: number,
-    messageBatchSize?: number,
+    stateTreeDepth?: number;
+    messageTreeDepth?: number;
+    voteOptionTreeDepth?: number;
+    tallyBatchSize?: number;
+    messageBatchSize?: number;
     tokenAddress?: string;
     coordinatorPubKey?: string;
     coordinatorAddress?: string;
@@ -116,17 +116,15 @@ export function updateStep(
 
 export const Dapp = () => {
   return (
-
-      <StateMachineProvider>
-        <Switch>
-          <Route path="/dashboard/deploy/">
-            <Deploy />
-          </Route>
-          <Route path="/dashboard/configure/">
-            <Configure />
-          </Route>
-        </Switch>
-      </StateMachineProvider>
-   
+    <StateMachineProvider>
+      <Switch>
+        <Route path="/dashboard/deploy/">
+          <Deploy />
+        </Route>
+        <Route path="/dashboard/configure/">
+          <Configure />
+        </Route>
+      </Switch>
+    </StateMachineProvider>
   );
 };
