@@ -40,6 +40,7 @@ export function handleRequestResolved(event: RequestResolved): void {
   recipient.requester = event.transaction.from.toHexString();
   recipient.submissionTime = event.params._timestamp.toString();
   recipient.rejected = event.params._rejected;
+  recipient.verified = !event.params._rejected
   recipient.recipientRegistry = recipientRegistryId;
 
   recipient.save();
@@ -59,6 +60,7 @@ export function handleRequestSubmitted(event: RequestSubmitted): void {
   recipient.submissionTime = event.params._timestamp.toString();
   recipient.deposit = event.transaction.value;
   recipient.recipientMetadata = event.params._metadata;
+  recipient.verified = false;
 
   recipient.save();
 }

@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0x549F91A93c94358C5f5380D7ABF23E1340CfF2db"
       abi: FundingRoundFactory
-      startBlock: 15000200
+      startBlock: 16105387
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -27,6 +27,53 @@ dataSources:
           file: ./abis/FundingRound.json
         - name: MACIFactory
           file: ./abis/MACIFactory.json
+        - name: OptimisticRecipientRegistry
+          file: ./abis/OptimisticRecipientRegistry.json
+        - name: BrightIdUserRegistry
+          file: ./abis/BrightIdUserRegistry.json
+      eventHandlers:
+        - event: CoordinatorChanged(address)
+          handler: handleCoordinatorChanged
+        - event: FundingSourceAdded(address)
+          handler: handleFundingSourceAdded
+        - event: FundingSourceRemoved(address)
+          handler: handleFundingSourceRemoved
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RoundFinalized(address)
+          handler: handleRoundFinalized
+        - event: RoundStarted(address)
+          handler: handleRoundStarted
+        - event: TokenChanged(address)
+          handler: handleTokenChanged
+      file: ./src/FundingRoundFactoryMapping.ts
+  - kind: ethereum/contract
+    name: FundingRoundFactoryDev
+    network: xdai
+    source:
+      address: "0xD6F68b2b71Fafaa44B9d8c1d614F85E69088f959"
+      abi: FundingRoundFactory
+      startBlock: 17670480
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - FundingRoundFactory
+        - RecipientRegistry
+        - ContributorRegistry
+        - FundingRound
+      abis:
+        - name: FundingRoundFactory
+          file: ./abis/FundingRoundFactory.json
+        - name: FundingRound
+          file: ./abis/FundingRound.json
+        - name: MACIFactory
+          file: ./abis/MACIFactory.json
+        - name: OptimisticRecipientRegistry
+          file: ./abis/OptimisticRecipientRegistry.json
+        - name: BrightIdUserRegistry
+          file: ./abis/BrightIdUserRegistry.json
       eventHandlers:
         - event: CoordinatorChanged(address)
           handler: handleCoordinatorChanged
@@ -62,6 +109,10 @@ templates:
       abis:
         - name: FundingRound
           file: ./abis/FundingRound.json
+        - name: OptimisticRecipientRegistry
+          file: ./abis/OptimisticRecipientRegistry.json
+        - name: BrightIdUserRegistry
+          file: ./abis/BrightIdUserRegistry.json
       eventHandlers:
         - event: Contribution(indexed address,uint256)
           handler: handleContribution

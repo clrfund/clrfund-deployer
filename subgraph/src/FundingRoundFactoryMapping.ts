@@ -13,8 +13,8 @@ import {
 import { MACIFactory as MACIFactoryContract } from "../generated/FundingRoundFactory/MACIFactory";
 import { FundingRound as FundingRoundContract } from "../generated/FundingRoundFactory/FundingRound";
 
-import { OptimisticRecipientRegistry as RecipientRegistryContract } from "../generated/OptimisticRecipientRegistry/OptimisticRecipientRegistry";
-import { BrightIdUserRegistry as UserRegistryContract } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
+import { OptimisticRecipientRegistry as RecipientRegistryContract } from "../generated/FundingRoundFactory/OptimisticRecipientRegistry";
+import { BrightIdUserRegistry as UserRegistryContract } from "../generated/FundingRoundFactory/BrightIdUserRegistry";
 
 import {
   FundingRound as FundingRoundTemplate,
@@ -42,7 +42,7 @@ export function handleOwnershipTransferred(event: OwnershipTransferred): void {
 export function handleRoundFinalized(event: RoundFinalized): void {
   log.info("handleRoundFinalized", []);
   let fundingRoundFactoryContract = FundingRoundFactoryContract.bind(event.address);
-  let fundingRoundAddress = fundingRoundFactoryContract.getCurrentRound();
+  let fundingRoundAddress = event.params._round;
 
   let fundingRoundContract = FundingRoundContract.bind(fundingRoundAddress);
 
@@ -73,14 +73,14 @@ export function handleRoundStarted(event: RoundStarted): void {
   let fundingRoundFactory = new FundingRoundFactory(fundingRoundFactoryId);
 
   FundingRoundTemplate.create(event.params._round);
-
   let fundingRoundFactoryContract = FundingRoundFactoryContract.bind(event.params._round);
-  let fundingRoundAddress = fundingRoundFactoryContract.getCurrentRound();
+  let fundingRoundAddress = event.params._round;
 
   let fundingRoundContract = FundingRoundContract.bind(fundingRoundAddress);
 
   let fundingRound = new FundingRound(fundingRoundId);
 
+  log.info("Get all the things", []);
   let nativeToken = fundingRoundContract.nativeToken();
   let coordinator = fundingRoundContract.coordinator();
   let maci = fundingRoundContract.maci();
@@ -105,8 +105,15 @@ export function handleRoundStarted(event: RoundStarted): void {
   let contributorRegistryId = contributorRegistryAddress.toHexString();
   let contributorRegistry = ContributorRegistry.load(recipientRegistryId);
 
+  log.info("TRY maciFactoryAddress", []);
+  let maciFactoryAddressCall0 = fundingRoundFactoryContract.try_maciFactory();
+  if(maciFactoryAddressCall0.reverted){
+    log.info("Still fails", []);
+  }else{}
+
   //NOTE: If the contracts aren't being tracked initialize them
   if (recipientRegistry == null) {
+    log.info("New recipientRegistry", []);
     recipientRegistryTemplate.create(recipientRegistryAddress);
     let recipientRegistryContract = RecipientRegistryContract.bind(recipientRegistryAddress);
     let baseDeposit = recipientRegistryContract.baseDeposit();
@@ -127,6 +134,7 @@ export function handleRoundStarted(event: RoundStarted): void {
   }
 
   if (contributorRegistry == null) {
+    log.info("New contributorRegistry", []);
     contributorRegistryTemplate.create(contributorRegistryAddress);
 
     let contributorRegistryContract = UserRegistryContract.bind(contributorRegistryAddress);
@@ -135,49 +143,62 @@ export function handleRoundStarted(event: RoundStarted): void {
     let owner = contributorRegistryContract.owner();
     let verifier = contributorRegistryContract.verifier();
     let contributorRegistry = new ContributorRegistry(contributorRegistryId);
-
     contributorRegistry.context = context;
     contributorRegistry.owner = owner;
     contributorRegistry.verifier = verifier;
     contributorRegistry.fundingRoundFactory = fundingRoundFactoryId;
     contributorRegistry.save();
   }
+  log.info("TRY maciFactoryAddress", []);
+  let maciFactoryAddressCall = fundingRoundFactoryContract.try_maciFactory();
+ 
+ 
+  if(maciFactoryAddressCall.reverted){
+    log.info("TRY maciFactoryAddress Failed", []);
+  }else{
+    let maciFactoryAddress = maciFactoryAddressCall.value
+    let maciFactoryContract = MACIFactoryContract.bind(maciFactoryAddress);
+    let batchUstVerifier = maciFactoryContract.batchUstVerifier();
+    let qvtVerifier = maciFactoryContract.qvtVerifier();
+    let votingDuration = maciFactoryContract.votingDuration();
+    let signUpDuration = maciFactoryContract.signUpDuration();
+  
+    let tallyBatchSize = maciFactoryContract.batchSizes().value0;
+    let messageBatchSize = maciFactoryContract.batchSizes().value1;
+    let stateTreeDepth = maciFactoryContract.treeDepths().value0;
+    let messageTreeDepth = maciFactoryContract.treeDepths().value1;
+    let voteOptionTreeDepth = maciFactoryContract.treeDepths().value2;
+    let maxUsers = maciFactoryContract.maxValues().value0;
+    let maxMessages = maciFactoryContract.maxValues().value1;
+    let maxVoteOptions = maciFactoryContract.maxValues().value2;
 
-  let maciFactoryAddress = fundingRoundFactoryContract.maciFactory();
-  let maciFactoryContract = MACIFactoryContract.bind(maciFactoryAddress);
-  let batchUstVerifier = maciFactoryContract.batchUstVerifier();
-  let qvtVerifier = maciFactoryContract.qvtVerifier();
-  let votingDuration = maciFactoryContract.votingDuration();
-  let signUpDuration = maciFactoryContract.signUpDuration();
+    fundingRoundFactory.maciFactory = maciFactoryAddress;
+    fundingRoundFactory.batchUstVerifier = batchUstVerifier;
+    fundingRoundFactory.qvtVerifier = qvtVerifier;
+    fundingRoundFactory.votingDuration = votingDuration;
+    fundingRoundFactory.signUpDuration = signUpDuration;
+    fundingRoundFactory.tallyBatchSize = BigInt.fromI32(tallyBatchSize);
+    fundingRoundFactory.messageBatchSize = BigInt.fromI32(messageBatchSize);
+    fundingRoundFactory.messageTreeDepth = BigInt.fromI32(messageTreeDepth);
+    fundingRoundFactory.stateTreeDepth = BigInt.fromI32(stateTreeDepth);
+    fundingRoundFactory.voteOptionTreeDepth = BigInt.fromI32(voteOptionTreeDepth);
+    fundingRoundFactory.maxUsers = maxUsers;
+    fundingRoundFactory.maxMessages = maxMessages;
+    fundingRoundFactory.maxVoteOptions = maxVoteOptions;
 
-  let tallyBatchSize = maciFactoryContract.batchSizes().value0;
-  let messageBatchSize = maciFactoryContract.batchSizes().value1;
-  let stateTreeDepth = maciFactoryContract.treeDepths().value0;
-  let messageTreeDepth = maciFactoryContract.treeDepths().value1;
-  let voteOptionTreeDepth = maciFactoryContract.treeDepths().value2;
-  let maxUsers = maciFactoryContract.maxValues().value0;
-  let maxMessages = maciFactoryContract.maxValues().value1;
-  let maxVoteOptions = maciFactoryContract.maxValues().value2;
+    fundingRound.signUpDeadline = event.block.timestamp.plus(signUpDuration);
+    fundingRound.votingDeadline = event.block.timestamp.plus(signUpDuration).plus(votingDuration);
+
+    log.info("New maciFactoryAddress", []);
+  }
 
   fundingRoundFactory.contributorRegistry = contributorRegistryId;
   fundingRoundFactory.recipientRegistry = recipientRegistryId;
   fundingRoundFactory.contributorRegistryAddress = contributorRegistryAddress;
   fundingRoundFactory.recipientRegistryAddress = recipientRegistryAddress;
-  fundingRoundFactory.maciFactory = maciFactoryAddress;
   fundingRoundFactory.nativeToken = nativeToken;
   fundingRoundFactory.coordinator = coordinator;
-  fundingRoundFactory.batchUstVerifier = batchUstVerifier;
-  fundingRoundFactory.qvtVerifier = qvtVerifier;
-  fundingRoundFactory.votingDuration = votingDuration;
-  fundingRoundFactory.signUpDuration = signUpDuration;
-  fundingRoundFactory.tallyBatchSize = BigInt.fromI32(tallyBatchSize);
-  fundingRoundFactory.messageBatchSize = BigInt.fromI32(messageBatchSize);
-  fundingRoundFactory.stateTreeDepth = BigInt.fromI32(stateTreeDepth);
-  fundingRoundFactory.messageTreeDepth = BigInt.fromI32(messageTreeDepth);
-  fundingRoundFactory.voteOptionTreeDepth = BigInt.fromI32(voteOptionTreeDepth);
-  fundingRoundFactory.maxUsers = maxUsers;
-  fundingRoundFactory.maxMessages = maxMessages;
-  fundingRoundFactory.maxVoteOptions = maxVoteOptions;
+
   fundingRoundFactory.currentRound = fundingRoundId;
 
   fundingRoundFactory.save();
@@ -188,8 +209,8 @@ export function handleRoundStarted(event: RoundStarted): void {
   fundingRound.contributorRegistryAddress = contributorRegistryAddress;
   fundingRound.recipientRegistryAddress = recipientRegistryAddress;
   fundingRound.startTime = event.block.timestamp;
-  fundingRound.signUpDeadline = event.block.timestamp.plus(signUpDuration);
-  fundingRound.votingDeadline = event.block.timestamp.plus(signUpDuration).plus(votingDuration);
+  fundingRound.recipientCount= BigInt.fromString("0");
+  
   fundingRound.save();
 }
 

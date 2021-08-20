@@ -1,5 +1,5 @@
 import { BigInt, log, store } from "@graphprotocol/graph-ts";
-import { BrightIdUserRegistry as BrightIdUserRegistryContract } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
+import { BrightIdUserRegistry as BrightIdUserRegistryContract } from "../generated/templates/FundingRound/BrightIdUserRegistry";
 import {
   Contribution,
   ContributionWithdrawn,
@@ -8,8 +8,8 @@ import {
   TallyPublished,
   RegisterCall,
   FundingRound as FundingRoundContract,
-} from "../generated/FundingRoundFactory/FundingRound";
-import { OptimisticRecipientRegistry as RecipientRegistryContract } from "../generated/OptimisticRecipientRegistry/OptimisticRecipientRegistry";
+} from "../generated/templates/FundingRound/FundingRound";
+import { OptimisticRecipientRegistry as RecipientRegistryContract } from "../generated/templates/FundingRound/OptimisticRecipientRegistry";
 
 import {
   Recipient,
@@ -162,6 +162,7 @@ export function handleFundsClaimed(event: FundsClaimed): void {
 
     recipient.recipientRegistry = recipientRegistryId;
     recipient.verified = true;
+    recipient.rejected = false;
     recipient.voteOptionIndex = event.params._voteOptionIndex;
 
     recipient.save();
@@ -179,6 +180,7 @@ export function handleFundsClaimed(event: FundsClaimed): void {
 
     recipient.recipientRegistry = recipientRegistryId;
     recipient.verified = true;
+    recipient.rejected = false;
     recipient.voteOptionIndex = event.params._voteOptionIndex;
 
     recipient.save();

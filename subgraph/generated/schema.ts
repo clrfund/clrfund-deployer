@@ -1260,6 +1260,23 @@ export class Recipient extends Entity {
     }
   }
 
+  get donations(): Array<string> | null {
+    let value = this.get("donations");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set donations(value: Array<string> | null) {
+    if (value === null) {
+      this.unset("donations");
+    } else {
+      this.set("donations", Value.fromStringArray(value as Array<string>));
+    }
+  }
+
   get createdAt(): string | null {
     let value = this.get("createdAt");
     if (value === null || value.kind == ValueKind.NULL) {
