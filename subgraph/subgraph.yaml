@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: clr.fund sandbox
-repository: https://github.com/daodesigner/clr-deployer/
+repository: https://github.com/daodesigner/clrfund-deployer
 schema:
   file: ./schema.graphql
 dataSources:

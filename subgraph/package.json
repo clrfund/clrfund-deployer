@@ -1,7 +1,7 @@
 {
   "name": "@clrfund/subgraph",
   "version": "0.7.0",
-  "repository": "https://github.com/clrfund/clrfund-deployer/subgraph",
+  "repository": "https://github.com/daodesigner/clrfund-deployer/subgraph",
   "keywords": [
     "clr.fund",
     "RxC",

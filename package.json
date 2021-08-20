@@ -1,6 +1,6 @@
 {
   "name": "@clrfund/clrfund-deployer",
-  "repository": "https://github.com/clrfund/clrfund-deployer",
+  "repository": "https://github.com/daodesigner/clrfund-deployer",
   "license": "GPL-3.0",
   "private": true,
   "workspaces": {
