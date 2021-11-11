@@ -14,13 +14,13 @@ export const SetSettingsForm = (props: any) => {
   const [txLink, setTxLink] = useState<string>("");
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { register, handleSubmit, errors } = useForm();
-  const [contractAddress, setContractAddress] = useState<string>("0x0dA71825182944234F45755989a8C96Ac1343E07");
+  const [contractAddress, setContractAddress] = useState<string>("0xcdb093ee4108a2b176064e40aed6477c3afd622d");
 
   let { search: params } = useLocation();
   useEffect(() => {
     const query = new URLSearchParams(params);
     const contractAddress = query.get("contract");
-    setContractAddress(contractAddress ? contractAddress : "0x0dA71825182944234F45755989a8C96Ac1343E07");
+    setContractAddress(contractAddress ? contractAddress : "0xcdb093ee4108a2b176064e40aed6477c3afd622d");
   }, [params]);
 
   const { validator, handleSetSettings, getReceipt, error } = useSetSettings(contractAddress);
