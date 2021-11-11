@@ -21,7 +21,7 @@ export const WizardLayout = ({ children }) => {
           <Container>{children}</Container>
         </SimpleGrid>
       </Box>
-      <Footer />
+    
     </Flex>
   );
 };
@@ -40,7 +40,7 @@ export const ConfigureLayout = ({ children }) => {
           <Container>{children}</Container>
         </SimpleGrid>
       </Box>
-      <Footer />
+    
     </Flex>
   );
 };

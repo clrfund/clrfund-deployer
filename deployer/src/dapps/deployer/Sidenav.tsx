@@ -86,7 +86,7 @@ export const Sidenav = () => {
             mb={2}
             fontSize="3xl"
             fontWeight={["bold", "extrabold"]}
-            color={useColorModeValue("gray.900", "gray.50")}
+            color={useColorModeValue("gray.50", "gray.50")}
             lineHeight="tight">
             {loadingTitle}
           </Text>

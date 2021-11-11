@@ -33,17 +33,18 @@ export default function Section2() {
       flexDir="column"
       w="auto"
       justifyContent="center"
-      alignItems="center">
+      alignItems="center"
+    >
       <Box textAlign={{ base: "center", lg: "center" }} mt="100px" mb="100px">
         <Text
           fontFamily="heading"
-          color="text.500"
+          color="gray.800"
           fontSize={["36px", "40px", "48px"]}
           fontWeight="700"
           fontStyle="normal"
           letterSpacing="-1.58px"
           lineHeight={["48px", "52px", "60px"]}>
-          Features
+          ETH Honduras Admin Portal
         </Text>
         <chakra.p mt={4} maxW="2xl" fontSize="xl" mx={{ lg: "auto" }} color={useColorModeValue("gray.500", "gray.400")}>
           Get insights to dig down into what's powering your growth the most.

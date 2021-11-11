@@ -64,8 +64,8 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 export default function LargeWithNewsletter() {
   return (
     <Box
-      bg={useColorModeValue("gray.50", "background.600")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      bg={useColorModeValue("background.600", "background.600")}
+      color={useColorModeValue("gray.200", "gray.200")}
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid
