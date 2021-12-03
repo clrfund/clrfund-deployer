@@ -3,6 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv'
 
 import { HardhatUserConfig, task } from 'hardhat/config'
+
 import "@typechain/hardhat";
 import '@nomiclabs/hardhat-ethers'
 import '@nomiclabs/hardhat-waffle'
@@ -56,6 +57,12 @@ const config: HardhatUserConfig = {
     alphaSort: true,
     runOnCompile: true,
     disambiguatePaths: false,
+  },
+  typechain: {
+    outDir: "typechain/",
+    target: "ethers-v5",
+    alwaysGenerateOverloads: false,
+    externalArtifacts: ['precompiled/*.json'], 
   },
   solidity: {
     version: '0.6.12',

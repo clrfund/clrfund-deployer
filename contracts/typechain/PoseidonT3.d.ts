@@ -20,12 +20,12 @@ import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
 interface PoseidonT3Interface extends ethers.utils.Interface {
   functions: {
-    "poseidon(uint256[2])": FunctionFragment;
+    "poseidon(bytes32[2])": FunctionFragment;
   };
 
   encodeFunctionData(
     functionFragment: "poseidon",
-    values: [[BigNumberish, BigNumberish]]
+    values: [[BytesLike, BytesLike]]
   ): string;
 
   decodeFunctionResult(functionFragment: "poseidon", data: BytesLike): Result;
@@ -77,19 +77,34 @@ export class PoseidonT3 extends BaseContract {
   interface: PoseidonT3Interface;
 
   functions: {
-    poseidon(
+    "poseidon(bytes32[2])"(
+      input: [BytesLike, BytesLike],
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    "poseidon(uint256[2])"(
       input: [BigNumberish, BigNumberish],
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
   };
 
-  poseidon(
+  "poseidon(bytes32[2])"(
+    input: [BytesLike, BytesLike],
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  "poseidon(uint256[2])"(
     input: [BigNumberish, BigNumberish],
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
   callStatic: {
-    poseidon(
+    "poseidon(bytes32[2])"(
+      input: [BytesLike, BytesLike],
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "poseidon(uint256[2])"(
       input: [BigNumberish, BigNumberish],
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -98,14 +113,24 @@ export class PoseidonT3 extends BaseContract {
   filters: {};
 
   estimateGas: {
-    poseidon(
+    "poseidon(bytes32[2])"(
+      input: [BytesLike, BytesLike],
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "poseidon(uint256[2])"(
       input: [BigNumberish, BigNumberish],
       overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    poseidon(
+    "poseidon(bytes32[2])"(
+      input: [BytesLike, BytesLike],
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "poseidon(uint256[2])"(
       input: [BigNumberish, BigNumberish],
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;

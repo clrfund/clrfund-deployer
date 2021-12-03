@@ -20,14 +20,12 @@ import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
 interface PoseidonT6Interface extends ethers.utils.Interface {
   functions: {
-    "poseidon(uint256[5])": FunctionFragment;
+    "poseidon(bytes32[5])": FunctionFragment;
   };
 
   encodeFunctionData(
     functionFragment: "poseidon",
-    values: [
-      [BigNumberish, BigNumberish, BigNumberish, BigNumberish, BigNumberish]
-    ]
+    values: [[BytesLike, BytesLike, BytesLike, BytesLike, BytesLike]]
   ): string;
 
   decodeFunctionResult(functionFragment: "poseidon", data: BytesLike): Result;
@@ -79,7 +77,12 @@ export class PoseidonT6 extends BaseContract {
   interface: PoseidonT6Interface;
 
   functions: {
-    poseidon(
+    "poseidon(bytes32[5])"(
+      input: [BytesLike, BytesLike, BytesLike, BytesLike, BytesLike],
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    "poseidon(uint256[5])"(
       input: [
         BigNumberish,
         BigNumberish,
@@ -91,7 +94,12 @@ export class PoseidonT6 extends BaseContract {
     ): Promise<[BigNumber]>;
   };
 
-  poseidon(
+  "poseidon(bytes32[5])"(
+    input: [BytesLike, BytesLike, BytesLike, BytesLike, BytesLike],
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  "poseidon(uint256[5])"(
     input: [
       BigNumberish,
       BigNumberish,
@@ -103,7 +111,12 @@ export class PoseidonT6 extends BaseContract {
   ): Promise<BigNumber>;
 
   callStatic: {
-    poseidon(
+    "poseidon(bytes32[5])"(
+      input: [BytesLike, BytesLike, BytesLike, BytesLike, BytesLike],
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "poseidon(uint256[5])"(
       input: [
         BigNumberish,
         BigNumberish,
@@ -118,7 +131,12 @@ export class PoseidonT6 extends BaseContract {
   filters: {};
 
   estimateGas: {
-    poseidon(
+    "poseidon(bytes32[5])"(
+      input: [BytesLike, BytesLike, BytesLike, BytesLike, BytesLike],
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "poseidon(uint256[5])"(
       input: [
         BigNumberish,
         BigNumberish,
@@ -131,7 +149,12 @@ export class PoseidonT6 extends BaseContract {
   };
 
   populateTransaction: {
-    poseidon(
+    "poseidon(bytes32[5])"(
+      input: [BytesLike, BytesLike, BytesLike, BytesLike, BytesLike],
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "poseidon(uint256[5])"(
       input: [
         BigNumberish,
         BigNumberish,

@@ -152,6 +152,14 @@ declare module "hardhat/types/runtime" {
       name: "VerifyTally",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.VerifyTally__factory>;
+    getContractFactory(
+      name: "PoseidonT3",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.PoseidonT3__factory>;
+    getContractFactory(
+      name: "PoseidonT6",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.PoseidonT6__factory>;
 
     // default types
     getContractFactory(
