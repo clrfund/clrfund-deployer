@@ -25,7 +25,6 @@
     "dotenv": "^8.2.0",
     "maci-contracts": "0.9.4",
     "solidity-rlp": "2.0.3",
- 
     "typechain": "^5.1.2"
   },
   "devDependencies": {

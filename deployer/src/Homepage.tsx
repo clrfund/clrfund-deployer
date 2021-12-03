@@ -10,8 +10,6 @@ import { Link as RouterLink } from "react-router-dom";
 export const Homepage = () => {
   return (
     <Layout>
-      <Section />
-      <Image minWidth="300px" maxWidth="60%" src={bg} />
       <Section2 />
     </Layout>
   );
@@ -22,7 +20,7 @@ const Layout = ({ children }) => {
       <Web3Nav />
       <Nav />
       <Container>{children}</Container>
-      <Footer />
+
     </Flex>
   );
 };
@@ -35,61 +33,11 @@ const Section = () => {
           <Flex justifyContent="center" flexDirection="row">
             <Box width={["100%", "80%", "70%", "60%"]}>
               <Flex flexDirection="column">
-                <Box>
-                  <Text
-                    fontFamily="heading"
-                    color="text.500"
-                    fontSize={["36px", "40px", "48px"]}
-                    fontWeight="700"
-                    fontStyle="normal"
-                    letterSpacing="-1.58px"
-                    lineHeight={["48px", "52px", "60px"]}>
-                    Fund your community’s public goods with provably fair, collusion-resistant quadratic funding.{" "}
+                <Heading>
+                  <Text fontSize="2xl" fontWeight="bold">
+                    CLR Admin Portal
                   </Text>
-                  <Text
-                    fontFamily="body"
-                    color="#687497"
-                    fontSize="lg"
-                    fontWeight="400"
-                    fontStyle="normal"
-                    letterSpacing="-0.58px"
-                    lineHeight={["28px"]}
-                    padding={["0px", "0px", "0px 50px"]}
-                    mt="5">
-                    Deploy your own quadratic funding application with the Clr.Fund Deployer. Empower your community to
-                    choose and fund(!) its own future, in a fully decentralized manner.
-                  </Text>
-                </Box>
-                <Box margin="0px -8px -20px -8px" marginTop="45px">
-                  <Button
-                    as={RouterLink}
-                    margin="0px 8px 20px 8px"
-                    width="250px"
-                    height="60px"
-                    bg="green.300"
-                    color="text.500"
-                    fontSize="16px"
-                    fontWeight="700"
-                    letterSpacing="-0.618px"
-                    lineHeight="normal"
-                    to="/dashboard/deploy">
-                    Get Started
-                  </Button>
-                  <Button
-                    margin="0px 8px 20px 8px"
-                    width="200px"
-                    height="60px"
-                    border="1px solid white"
-                    bg="background.600"
-                    color="text.500"
-                    fontSize="16px"
-                    fontWeight="700"
-                    letterSpacing="-0.618px"
-                    lineHeight="normal"
-                    to="/dashboard/deploy">
-                    Learn More
-                  </Button>
-                </Box>
+                </Heading>
               </Flex>
             </Box>
           </Flex>

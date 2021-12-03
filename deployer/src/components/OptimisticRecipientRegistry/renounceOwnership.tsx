@@ -14,13 +14,13 @@ export const RenounceOwnershipForm = (props: any) => {
   const [txLink, setTxLink] = useState<string>("");
   const [txReceipt, setTxReceipt] = useState<null | TransactionReceipt>(null);
   const { handleSubmit } = useForm();
-  const [contractAddress, setContractAddress] = useState<string>("0x0dA71825182944234F45755989a8C96Ac1343E07");
+  const [contractAddress, setContractAddress] = useState<string>("0x3e5ed8ec264930d9826cbcda194bcd2850e0dc50");
 
   let { search: params } = useLocation();
   useEffect(() => {
     const query = new URLSearchParams(params);
     const contractAddress = query.get("contract");
-    setContractAddress(contractAddress ? contractAddress : "0x0dA71825182944234F45755989a8C96Ac1343E07");
+    setContractAddress(contractAddress ? contractAddress : "0x3e5ed8ec264930d9826cbcda194bcd2850e0dc50");
   }, [params]);
 
   const { validator, handleRenounceOwnership, getReceipt, error } = useRenounceOwnership(contractAddress);

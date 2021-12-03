@@ -68,10 +68,11 @@ export const Web3Nav = () => {
     <Box width="100%" mx="auto" px="40px">
       <Flex height="80px" justifyContent="left" flexDirection="row">
         <FlexBox flexGrow={0} justifyContent="center">
-        <Image p={4} height={"60px"} src={Logo}  />
-
-          
-        
+        <Text fontSize="lg" fontWeight="bold" color="gray.800">
+          <Link as={RouterLink} to="/">
+            ETH Honduras Admin Portal  
+          </Link>
+        </Text>
         </FlexBox>
         <FlexBox justifyContent="left">
           
@@ -102,15 +103,15 @@ export function WithSubnavigation() {
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "background.600")}
-        color={useColorModeValue("gray.600", "white")}
+        bg={useColorModeValue("background.600", "background.600")}
+        color={useColorModeValue("gray.100", "gray.100")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: "48px" }}
         borderTop={1}
         borderBottom={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        borderColor={useColorModeValue("gray.900", "grey.900")}
         align={"center"}
       >
         <Flex
@@ -261,9 +262,9 @@ export function SystemStatus() {
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
-  const popoverContentBgColor = useColorModeValue("white", "gray.800");
+  const linkColor = useColorModeValue("gray.100", "gray.100");
+  const linkHoverColor = useColorModeValue("white", "white");
+  const popoverContentBgColor = useColorModeValue("gray.800", "gray.800");
 
   return (
     <Stack direction={"row"} spacing={4}>
