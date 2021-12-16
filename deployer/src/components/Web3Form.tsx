@@ -397,17 +397,10 @@ const registerUint8: RegisterHelper = {
 };
 const registerBytes32: RegisterHelper = {
   required: "This field is required",
-  validate: {
-    isValidJSON: (value) => {
-      try {
-        JSON.parse(value);
-      } catch (e) {
-        return "Failed to parse JSON";
-      }
-      return true;
-    },
+  pattern: {
+    value: /^0x[a-fA-F0-9]+$/,
+    message: "Invalid hex in call data",
   },
-
   setValueAs: (value) => value,
 };
 const registerBytes: RegisterHelper = {
